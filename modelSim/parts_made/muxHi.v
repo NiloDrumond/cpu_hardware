@@ -1,11 +1,11 @@
 module muxHi(
-input logic  hiControl,
-input logic [31:0] mult,
-input logic [31:0] div,
-output logic [31:0] hi
+input wire  hiControl,
+input wire [31:0] mult,
+input wire [31:0] div,
+output reg [31:0] hi
 );
 
-always 
+always @ (*) begin
 	case (hiControl)
 		1'd0: begin
 			hi = mult;
@@ -14,5 +14,6 @@ always
 			hi = div;
 		end
 	endcase
-	
+end
+
 endmodule

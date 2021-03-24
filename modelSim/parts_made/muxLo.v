@@ -1,11 +1,11 @@
 module muxLo(
-input logic loControl,
-input logic [31:0] mult,
-input logic [31:0] div,
-output logic [31:0] lo
+input wire loControl,
+input wire [31:0] mult,
+input wire [31:0] div,
+output reg [31:0] lo
 );
 
-always 
+always @ (*) begin
 	case (loControl)
 		1'd0: begin
 			lo = mult;
@@ -14,5 +14,6 @@ always
 			lo = div;
 		end
 	endcase
+end
 	
 endmodule
