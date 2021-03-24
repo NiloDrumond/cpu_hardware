@@ -1,12 +1,12 @@
-module muxHi(
-input wire  hiControl,
+module mux_hi(
+input wire seletor,
 input wire [31:0] mult,
 input wire [31:0] div,
 output reg [31:0] hi
 );
 
 always @ (*) begin
-	case (hiControl)
+	case (seletor)
 		1'd0: begin
 			hi = mult;
 		end
