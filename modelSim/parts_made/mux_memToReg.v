@@ -10,7 +10,7 @@ module mux_memToReg(
     input wire [31:0]shiftRegOut,//7
     input wire [31:0]A_out,//9
     input wire [31:0]B_out,//10
-    output wire [31:0]Data_out
+    output reg [31:0]Data_out
 );
 
 always 
@@ -26,7 +26,6 @@ always
         4'd8:Data_out = 32'd227;
 		4'd9:Data_out = A_out;
 		4'd10:Data_out = B_out;
-        
 	endcase
 	
 endmodule
