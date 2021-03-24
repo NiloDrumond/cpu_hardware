@@ -13,8 +13,8 @@ module mux_memToReg(
     output reg [31:0]Data_out
 );
 
-always 
-	case (seletor)
+always@(*)begin
+    case (seletor)
 		4'd0:Data_out = ALU_out;
 		4'd1:Data_out = LoadSize_out;
 		4'd2:Data_out = HI_out;
@@ -27,5 +27,6 @@ always
 		4'd9:Data_out = A_out;
 		4'd10:Data_out = B_out;
 	endcase
+end
 	
 endmodule
