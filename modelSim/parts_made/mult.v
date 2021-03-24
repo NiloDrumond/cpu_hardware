@@ -1,6 +1,6 @@
 module mult(
 	input wire clk,
-	input wire Reset,
+	input wire reset,
 	input wire [31:0]a,
 	input wire [31:0]b,
 	input wire multControl,
@@ -14,7 +14,7 @@ reg [64:0] sub;
 reg [64:0] produto;
 reg [31:0] aNegativo;
 reg aux;
-integer counter = 33;
+integer counter = 0;
 
 initial begin
 	multStop = 1'b0;
@@ -22,13 +22,13 @@ initial begin
 end 
 
 always @ (posedge clk) begin
-	if(Reset == 1)begin
+	if(reset == 1)begin
 		multStop = 1'b0;
 		soma = 65'd0;
 		sub = 65'd0;
 		produto = 65'd0;
 		aNegativo = 65'd0;
-		counter = 33;
+		counter = 0;
 		hi = 32'd0;
 	  lo = 32'd0;
 	end
@@ -43,22 +43,23 @@ always @ (posedge clk) begin
 		multStop = 1'b0;
 		aux = 1'b1;	
 	end
-	
-	case(produto[1:0])
-		2'b01: begin
-			produto = produto + soma;
-		end
-		2'b10: begin
-			produto = produto + sub;
-		end		
-	endcase
-	
-	produto = (produto >> 1);
-	if(produto[63] == 1'b1) begin
-		produto[64] = 1'b1;
-	end	
+
 	
 	if(counter > 1) begin
+		case(produto[1:0])
+			2'b01: begin
+				produto = produto + soma;
+			end
+			2'b10: begin
+				produto = produto + sub;
+			end		
+		endcase
+		
+		produto = (produto >> 1);
+		if(produto[63] == 1'b1) begin
+			produto[64] = 1'b1;
+		end	
+
 		counter = (counter - 1);
 	end
 
