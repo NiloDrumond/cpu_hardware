@@ -17,6 +17,7 @@ module cpu(
     wire IR_write;
     wire RB_write;
     wire AB_write;
+    wire ALUOUT_write;
 
     wire [2:0]seletor_ALU;
 
@@ -150,6 +151,13 @@ module cpu(
         LT
     );
 
+    Registrador ALUOUT(
+        clk,
+        reset,
+        ALUOUT_write,
+        ALU_result,
+        ALUOUT_out
+    );
     ctrl_unit CTRL_(
         clk,
         reset,
@@ -160,11 +168,13 @@ module cpu(
         GT,
         LT,
         OPCODE,
+        IMMEDIATE[5:0],
         PC_write,
         MEM_write,
         IR_write,
         RB_write,
         AB_write,
+        ALUOUT_write,
         seletor_ALU,
         seletor_RegDst,
         seletor_memToReg,
