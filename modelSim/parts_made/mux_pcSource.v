@@ -1,4 +1,4 @@
-module pcSource(
+module mux_pcSource(
 input wire [2:0] muxpcsource,
 input wire [31:0] LSControlOut,
 input wire [31:0] aluResult,
@@ -11,21 +11,11 @@ output reg [31:0] pcSourceOut // saida do mux do pcSource
 
 always @ (*) begin
 	case (muxpcsource)
-        3'd0: begin
-            pcSourceOut = LSControlOut;
-        end
-		3'd1: begin
-			pcSourceOut = aluResult;
-		end
-		3'd2: begin
-			pcSourceOut = aluOutOut;
-		end
-		3'd3: begin
-			pcSourceOut = shiftLeft2Out;
-		end
-		3'd4: begin
-			pcSourceOut = epcOut;
-		end
+        3'd0:pcSourceOut = LSControlOut;
+		3'd1:pcSourceOut = aluResult;
+		3'd2:pcSourceOut = aluOutOut;
+		3'd3:pcSourceOut = shiftLeft2Out;
+		3'd4:pcSourceOut = epcOut;
 	endcase
-	
+end	
 endmodule

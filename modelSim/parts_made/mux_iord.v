@@ -1,4 +1,4 @@
-module iord(
+module mux_iord(
 input wire [2:0]iordmux,
 input wire [31:0] pcOut,
 input wire [31:0] aluResult,

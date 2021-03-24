@@ -1,4 +1,4 @@
-module branchMux(
+module mux_branch(
 input wire [5:0] Opcode,
 input wire Igual,
 input wire Maior,

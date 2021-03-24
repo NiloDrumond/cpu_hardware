@@ -1,4 +1,4 @@
-module mux_ulaB(
+module mux_memToReg(
     input wire [3:0]seletor,
     input wire [31:0]ALU_out, //0
     input wire [31:0]LoadSize_out,//1
