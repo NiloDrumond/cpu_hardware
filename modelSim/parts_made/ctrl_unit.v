@@ -49,32 +49,28 @@ module ctrl_unit(
     output reg [2:0]IORD_select,
 );
 
-//STATEs
+//States
 parameter FETCH1 = 7'd0;
 parameter FETCH2 = 7'd1;
 parameter FETCH3 = 7'd2;
 parameter DECODE1 = 7'd3;
 parameter DECODE2 = 7'd4;
+parameter WAIT = 6'd5;
 parameter EXECUTE = 7'd6;
-parameter ADDI_ADDIU = 6'd11;
-parameter ALUOUT_TO_REG = 6'd10;
-parameter END = 7'd128;
-//parameter RESET = 6'd126;
-
-
-// Exceptions
-parameter OVERFLOWEX = 7'd47;
-parameter OVERFLOWEX2 = 7'd48;
-parameter OVERFLOWEX3 = 7'd49;
-parameter OVERFLOWEX4 = 7'd50;
-parameter DIVYBZERO = 7'd51;
-parameter DIVYBZERO2 = 7'd52;
-parameter DIVYBZERO3 = 7'd53;
-parameter DIVYBZERO4 = 7'd54;
-parameter OPCODEEX = 7'd55;
-parameter OPCODEEX2 = 7'd56;
-parameter OPCODEEX3 = 7'd57;
-parameter OPCODEEX4 = 7'd58;
+parameter ADDI_ADDIU = 6'd7;
+parameter ALUOUT_TO_REG = 6'd8;
+parameter OVERFLOWEX = 7'd9;
+parameter OVERFLOWEX2 = 7'd10;
+parameter OVERFLOWEX3 = 7'd11;
+parameter OVERFLOWEX4 = 7'd12;
+parameter DIVYBZERO = 7'd13;
+parameter DIVYBZERO2 = 7'd14;
+parameter DIVYBZERO3 = 7'd15;
+parameter DIVYBZERO4 = 7'd16;
+parameter OPCODEEX = 7'd17;
+parameter OPCODEEX2 = 7'd18;
+parameter OPCODEEX3 = 7'd19;
+parameter OPCODEEX4 = 7'd20;
 
 
 //instr R
