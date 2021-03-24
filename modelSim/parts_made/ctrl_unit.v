@@ -1,37 +1,37 @@
 module ctrl_unit(
     input wire clk,
-    input wire reset
+    input wire reset,
 //flags
-    input wire overflow;
-    input wire NG;
-    input wire zero;
-    input wire EQ;
-    input wire GT;
-    input wire LT;
+    input wire overflow,
+    input wire NG,
+    input wire zero,
+    input wire EQ,
+    input wire GT,
+    input wire LT,
 
 //Meaningful part of the instruction
-    input wire [5:0]OPCODE;
-    input wire [5:0]FUNCT;
+    input wire [5:0]OPCODE,
+    input wire [5:0]FUNCT,
 //Control wires
-    output reg PC_write;
-    output reg MEM_write;
-    output reg IR_write;
-    output reg RB_write;
-    output reg AB_write;
-    output reg ALUOUT_write;
+    output reg PC_write,
+    output reg MEM_write,
+    output reg IR_write,
+    output reg RB_write,
+    output reg AB_write,
+    output reg ALUOUT_write,
 
-    output reg [2:0]seletor_ALU;
+    output reg [2:0]seletor_ALU,
 
     //muxes
-    output reg [2:0]seletor_RegDst;
-    output reg [3:0]seletor_memToReg;
-    output reg [1:0]seletor_aluScrA;
-    output reg [1:0]seletor_aluScrB;
+    output reg [2:0]seletor_RegDst,
+    output reg [3:0]seletor_memToReg,
+    output reg [1:0]seletor_aluScrA,
+    output reg [1:0]seletor_aluScrB,
 // Especial output for reset instruction
     output reg reset_out
 );
 
-//machine states
+//machine STATEs
 parameter FETCH1 = 7'd0;
 parameter FETCH2 = 7'd1;
 parameter FETCH3 = 7'd2;
@@ -44,7 +44,7 @@ parameter ST_AND = 7'd9;
 parameter ST_ADDI = 7'd11;
 parameter ST_ADDIU = 7'd12;
 parameter ALUOUT_to_Reg = 7'd10;
-parameter ST_RESET = 7'd126
+parameter ST_RESET = 7'd126;
 
 
 //instr R
@@ -65,8 +65,8 @@ end
 
 always @(posedge clk) begin
     if(reset == 1'b1) begin
-        if(state != ST_RESET) begin
-            state = ST_RESET;
+        if(STATE != ST_RESET) begin
+            STATE = ST_RESET;
             PC_write = 1'b0;
             MEM_write = 1'b0;
             IR_write = 1'b0;
@@ -81,7 +81,7 @@ always @(posedge clk) begin
             reset_out = 1'b1;
         end
         else begin
-            state = FETCH1;
+            STATE = FETCH1;
             PC_write = 1'b0;
             MEM_write = 1'b0;
             IR_write = 1'b0;
@@ -97,9 +97,9 @@ always @(posedge clk) begin
         end
     end
     else begin
-        case(STATE):
+        case(STATE)
             FETCH1:begin
-                state = FETCH2;
+                STATE = FETCH2;
                 PC_write = 1'b0;
                 MEM_write = 1'b0;
                 IR_write = 1'b0; //
@@ -114,7 +114,7 @@ always @(posedge clk) begin
                 reset_out = 1'b0;
             end
             FETCH2:begin
-                state = FETCH3;
+                STATE = FETCH3;
                 PC_write = 1'b1;//
                 MEM_write = 1'b0;
                 IR_write = 1'b0;
@@ -129,7 +129,7 @@ always @(posedge clk) begin
                 reset_out = 1'b0;
             end
             FETCH3:begin
-                state = DECODE1;
+                STATE = DECODE1;
                 PC_write = 1'b0;//
                 MEM_write = 1'b0;
                 IR_write = 1'b1;//
@@ -144,7 +144,7 @@ always @(posedge clk) begin
                 reset_out = 1'b0;
             end
             DECODE1:begin
-                state = DECODE2;
+                STATE = DECODE2;
                 PC_write = 1'b0;
                 MEM_write = 1'b0;
                 IR_write = 1'b1;
@@ -155,11 +155,11 @@ always @(posedge clk) begin
                 seletor_RegDst = 2'b00;
                 seletor_memToReg = 3'b000;
                 seletor_aluScrA = 2'b00;//
-                seletor_aluScrB = 2'b03;//
+                seletor_aluScrB = 2'b11;//
                 reset_out = 1'b0;
             end
             DECODE2:begin
-                state = EXECUTE;
+                STATE = EXECUTE;
                 PC_write = 1'b0;
                 MEM_write = 1'b0;
                 IR_write = 1'b1;
@@ -170,13 +170,13 @@ always @(posedge clk) begin
                 seletor_RegDst = 2'b00;
                 seletor_memToReg = 3'b000;
                 seletor_aluScrA = 2'b00;
-                seletor_aluScrB = 2'b03;
+                seletor_aluScrB = 2'b11;
                 reset_out = 1'b0;
             end
             EXECUTE:begin
-                case(OPCODE):
+                case(OPCODE)
                     5'b0000: begin
-                        case(FUNCT):
+                        case(FUNCT)
                             ADD: STATE = ST_ADD;
                             SUB: STATE = ST_SUB;
                             AND: STATE = ST_AND;
@@ -199,7 +199,7 @@ always @(posedge clk) begin
                 reset_out = 1'b0;
             end
             ST_ADD:begin
-                state = ALUOUT_to_Reg;
+                STATE = ALUOUT_to_Reg;
                 PC_write = 1'b0;
                 MEM_write = 1'b0;
                 IR_write = 1'b0;
@@ -214,7 +214,7 @@ always @(posedge clk) begin
                 reset_out = 1'b0;
             end
             ST_SUB:begin
-                state = ALUOUT_to_Reg;
+                STATE = ALUOUT_to_Reg;
                 PC_write = 1'b0;
                 MEM_write = 1'b0;
                 IR_write = 1'b0;
@@ -229,7 +229,7 @@ always @(posedge clk) begin
                 reset_out = 1'b0;    
             end
             ST_AND:begin
-                state = ALUOUT_to_Reg;
+                STATE = ALUOUT_to_Reg;
                 PC_write = 1'b0;
                 MEM_write = 1'b0;
                 IR_write = 1'b0;
@@ -244,7 +244,7 @@ always @(posedge clk) begin
                 reset_out = 1'b0;
             end
             ST_ADDI:begin
-                state = ALUOUT_to_Reg;
+                STATE = ALUOUT_to_Reg;
                 PC_write = 1'b0;
                 MEM_write = 1'b0;
                 IR_write = 1'b0;
@@ -259,7 +259,7 @@ always @(posedge clk) begin
                 reset_out = 1'b0;
             end
             ST_ADDIU:begin
-                state = ALUOUT_to_Reg;
+                STATE = ALUOUT_to_Reg;
                 PC_write = 1'b0;
                 MEM_write = 1'b0;
                 IR_write = 1'b0;
@@ -274,7 +274,7 @@ always @(posedge clk) begin
                 reset_out = 1'b0;
             end
             ALUOUT_to_Reg:begin
-                state = FETCH1;
+                STATE = FETCH1;
                 PC_write = 1'b0;
                 MEM_write = 1'b0;
                 IR_write = 1'b0;

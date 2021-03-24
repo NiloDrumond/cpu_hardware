@@ -47,7 +47,7 @@ module cpu(
     wire [31:0]EXT16_32_out;
     wire [31:0]aluScrA_out;
     wire [31:0]aluScrB_out;
-    
+    wire [31:0]ALUOUT_out;
 
     Registrador PC_(
         clk,
@@ -77,8 +77,8 @@ module cpu(
     mux_regDst M_regDst_(
         seletor_RegDst,
         RT,
-        RD,
         IMMEDIATE,
+        RS,
         regDst_out
     );
     mux_memToReg M_memToReg_(
@@ -125,17 +125,18 @@ module cpu(
         IMMEDIATE,
         EXT16_32_out
     );
-    mux_ulaA M_ULAA_(
+    mux_aluSrcA M_ULAA_(
         seletor_aluScrA,
         PC_out,
         A_out,
         A_out, // botar mdr_out
         aluScrA_out
     );
-    mux_ulaB M_ULAB_(
+    mux_aluSrcB M_ULAB_(
         seletor_aluScrB,
         B_out,
         EXT16_32_out,
+        EXT16_32_out, // botar siftleft2_out
         aluScrB_out
     );
     ula32 ULA_(
