@@ -1,7 +1,7 @@
 module loadSize(
-    input logic [1:0] LSControl,
-	input logic [31:0] mdr,
-	output logic [31:0] lsOut
+    input wire [1:0] LSControl,
+	input wire [31:0] mdr,
+	output reg [31:0] lsOut
 );
 
 always @ (*) begin
@@ -14,4 +14,4 @@ always @ (*) begin
 	end
 end
 
-endmodule: loadSize
+endmodule
