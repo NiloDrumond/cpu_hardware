@@ -4,23 +4,20 @@ module div(
 	input logic clk,
 	input logic reset,
 	input logic divControl,
-	output logic divStop, // sinal informando que acabou o algoritmo
+	output logic divStop,
 	output logic divZero, 
-	//output logic [64:0] qOut,
-	//output logic [31:0] bOut,
-	//output logic [31:0] dividendOut,
-	output logic [31:0]hiDiv,
-	output logic [31:0]loDiv
+	output logic [31:0]hi,
+	output logic [31:0]lo
 );
 
 
 integer counter = 31;
-logic [31:0] quotient;
-logic [31:0] remainder;
-logic [31:0] dividend;
+logic [31:0] quociente;
+logic [31:0] resto;
+logic [31:0] dividendoo;
 logic [31:0] divisor;
-logic g;
-logic j;
+logic negativo;
+logic divNegativo;
 logic aux;
 
 initial begin
@@ -31,25 +28,25 @@ end
 
 always @ (posedge clk) begin
 	if(reset == 1'b1) begin
-		quotient = 32'b0;
-		remainder = 32'b0;
-		dividend = 32'b0;
+		quociente = 32'b0;
+		resto = 32'b0;
+		dividendo = 32'b0;
 		divisor = 32'b0;
-		g = 1'b0;
-		j = 1'b0;
+		negativo = 1'b0;
+		divNegativo = 1'b0;
 		counter = 0;
 		aux = 1'b0;
 	end
 	
+	// Inicio do algoritmo
 	if(divControl == 1'b1) begin
-		
-		loDiv = 32'd0;
-		hiDiv = 32'd0;
+		lo = 32'd0;
+		hi = 32'd0;
 		counter = 31;
-		dividend = a;
+		dividendo = a;
 		divisor = b;
 		divStop = 1'b0;
-		if(divisor == 0) begin // checking possible divByZero Exception
+		if(divisor == 0) begin // Checa divByZero
 			divZero = 1'b1;
 			counter = 1;
 		end else begin
@@ -58,60 +55,64 @@ always @ (posedge clk) begin
 		end
 				
 		if(a[31] != b[31]) begin
-			g = 1'b1;
+			negativo = 1'b1;
 		end else begin
-			g = 1'b0;
+			negativo = 1'b0;
 		end
-		if(dividend[31] == 1'b1) begin
-			dividend = (~dividend + 32'd1);
-			j = 1'b1;
+		if(dividendo[31] == 1'b1) begin
+			dividendo = (~dividendo + 32'd1);
+			divNegativo = 1'b1;
 		end else begin
-			j = 1'b0;
+			divNegativo = 1'b0;
 		end	
 		if(divisor[31] == 1'b1) begin
 			divisor = (~divisor + 32'd1);
 		end
-		quotient = 32'b0;
-		remainder = 32'b0;				
+		quociente = 32'b0;
+		resto = 32'b0;				
 	end
 	
-	remainder = (remainder << 1);
+	resto = (resto << 1);
 	
-	remainder[0] = dividend[counter];
+	resto[0] = dividendo[counter];
 	
-	if(remainder >= divisor) begin
-		remainder = remainder - divisor;
-		quotient[counter] = 1;
+	if(resto >= divisor) begin
+		resto = resto - divisor;
+		quociente[counter] = 1;
 	end	
 	
+
+  // Fim do algoritmo
 	if(counter == 0) begin
 		if(divZero == 1'b0) begin
-			loDiv = quotient;
-			hiDiv = remainder;
-			if(g == 1'b1 && loDiv != 0) begin
-				loDiv = (~loDiv + 1);
+			lo = quociente;
+			hi = resto;
+			if(negativo == 1'b1 && lo != 0) begin
+				lo = (~lo + 1);
 			end
-			if(j == 1'b1 && hiDiv != 0) begin
-				hiDiv = (~hiDiv + 1);
+			if(divNegativo == 1'b1 && hi != 0) begin
+				hi = (~hi + 1);
 			end
 		end
 		if(aux == 1'b1) begin
 			divStop = 1'b1;
 			aux = 1'b0;
 		end
-		counter = -10;
+		counter = -1;
 	end
 	
-	if(counter == -10) begin
-		quotient = 32'b0;
-		remainder = 32'b0;
-		dividend = 32'b0;
+
+  // Mantém os campos limpos caso não esteja executando o algoritmo
+	if(counter == -1) begin
+		quociente = 32'b0;
+		resto = 32'b0;
+		dividendo = 32'b0;
 		divisor = 32'b0;
-		g = 1'b0;
+		negativo = 1'b0;
 		counter = 0;
 	end
-	counter = (counter - 1);// check the cases where the remainder can be 0
-		
+
+	counter = (counter - 1);
 end
 
 endmodule: div
