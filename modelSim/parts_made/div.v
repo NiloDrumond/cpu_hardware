@@ -4,20 +4,17 @@ module div(
 	input logic clk,
 	input logic reset,
 	input logic divControl,
-	output logic divStop, // sinal informando que acabou o algoritmo
-	output logic divZero, 
-	//output logic [64:0] qOut,
-	//output logic [31:0] bOut,
-	//output logic [31:0] dividendOut,
+	output logic divStop, // sinal informando que o algoritmo encerrou
+	output logic divZero,
 	output logic [31:0]hiDiv,
 	output logic [31:0]loDiv
 );
 
 
 integer counter = 31;
-logic [31:0] quotient;
-logic [31:0] remainder;
-logic [31:0] dividend;
+logic [31:0] quociente;
+logic [31:0] resto;
+logic [31:0] dividendo;
 logic [31:0] divisor;
 logic g;
 logic j;
@@ -31,9 +28,9 @@ end
 
 always @ (posedge clk) begin
 	if(reset == 1'b1) begin
-		quotient = 32'b0;
-		remainder = 32'b0;
-		dividend = 32'b0;
+		quociente = 32'b0;
+		resto = 32'b0;
+		dividendo = 32'b0;
 		divisor = 32'b0;
 		g = 1'b0;
 		j = 1'b0;
@@ -46,10 +43,10 @@ always @ (posedge clk) begin
 		loDiv = 32'd0;
 		hiDiv = 32'd0;
 		counter = 31;
-		dividend = a;
+		dividendo = a;
 		divisor = b;
 		divStop = 1'b0;
-		if(divisor == 0) begin // checking possible divByZero Exception
+		if(divisor == 0) begin // checando uma possivel excecao de divBy0
 			divZero = 1'b1;
 			counter = 1;
 		end else begin
@@ -62,8 +59,8 @@ always @ (posedge clk) begin
 		end else begin
 			g = 1'b0;
 		end
-		if(dividend[31] == 1'b1) begin
-			dividend = (~dividend + 32'd1);
+		if(dividendo[31] == 1'b1) begin
+			dividendo = (~dividendo + 32'd1);
 			j = 1'b1;
 		end else begin
 			j = 1'b0;
@@ -71,23 +68,23 @@ always @ (posedge clk) begin
 		if(divisor[31] == 1'b1) begin
 			divisor = (~divisor + 32'd1);
 		end
-		quotient = 32'b0;
-		remainder = 32'b0;				
+		quociente = 32'b0;
+		resto = 32'b0;				
 	end
 	
-	remainder = (remainder << 1);
+	resto = (resto << 1);
 	
-	remainder[0] = dividend[counter];
+	resto[0] = dividendo[counter];
 	
-	if(remainder >= divisor) begin
-		remainder = remainder - divisor;
-		quotient[counter] = 1;
+	if(resto >= divisor) begin
+		resto = resto - divisor;
+		quociente[counter] = 1;
 	end	
 	
 	if(counter == 0) begin
 		if(divZero == 1'b0) begin
-			loDiv = quotient;
-			hiDiv = remainder;
+			loDiv = quociente;
+			hiDiv = resto;
 			if(g == 1'b1 && loDiv != 0) begin
 				loDiv = (~loDiv + 1);
 			end
@@ -103,14 +100,14 @@ always @ (posedge clk) begin
 	end
 	
 	if(counter == -10) begin
-		quotient = 32'b0;
-		remainder = 32'b0;
-		dividend = 32'b0;
+		quociente = 32'b0;
+		resto = 32'b0;
+		dividendo = 32'b0;
 		divisor = 32'b0;
 		g = 1'b0;
 		counter = 0;
 	end
-	counter = (counter - 1);// check the cases where the remainder can be 0
+	counter = (counter - 1);// checando os casos onde o resto pode ser 0
 		
 end
 
