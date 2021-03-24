@@ -1,24 +1,24 @@
 module div(
-	input logic [31:0]a,
-	input logic [31:0]b,
-	input logic clk,
-	input logic reset,
-	input logic divControl,
-	output logic divStop,
-	output logic divZero, 
-	output logic [31:0]hi,
-	output logic [31:0]lo
+	input wire [31:0]a,
+	input wire [31:0]b,
+	input wire clk,
+	input wire reset,
+	input wire divControl,
+	output reg divStop,
+	output reg divZero, 
+	output reg [31:0]hi,
+	output reg [31:0]lo
 );
 
 
 integer counter = 31;
-logic [31:0] quociente;
-logic [31:0] resto;
-logic [31:0] dividendoo;
-logic [31:0] divisor;
-logic negativo;
-logic divNegativo;
-logic aux;
+reg [31:0] quociente;
+reg [31:0] resto;
+reg [31:0] dividendoo;
+reg [31:0] divisor;
+reg negativo;
+reg divNegativo;
+reg aux;
 
 initial begin
 	divStop = 1'b0;

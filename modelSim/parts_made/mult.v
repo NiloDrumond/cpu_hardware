@@ -1,19 +1,19 @@
 module mult(
-	input logic clk,
-	input logic Reset,
-	input logic [31:0]a,
-	input logic [31:0]b,
-	input logic multControl,
-	output logic multStop,
-	output logic [31:0] hi,
-	output logic [31:0] lo
+	input wire clk,
+	input wire Reset,
+	input wire [31:0]a,
+	input wire [31:0]b,
+	input wire multControl,
+	output reg multStop,
+	output reg [31:0] hi,
+	output reg [31:0] lo
 );
 
-logic [64:0] soma;
-logic [64:0] sub;
-logic [64:0] produto;
-logic [31:0] aNegativo;
-logic aux;
+reg [64:0] soma;
+reg [64:0] sub;
+reg [64:0] produto;
+reg [31:0] aNegativo;
+reg aux;
 integer counter = 33;
 
 initial begin
