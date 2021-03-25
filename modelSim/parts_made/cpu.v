@@ -23,34 +23,27 @@ module cpu(
 
     wire HILO_write;
 
-    wire multStop,
+    wire multStop;
     wire divStop;
-    wire MULT_control,
+    wire MULT_control;
     wire DIV_control;
 
-    wire [1:0]SS_control,
-    wire [1:0]LS_control,
+    wire [1:0]SS_control;
+    wire [1:0]LS_control;
 
-    wire [2:0]REGDST_select,
-    wire [3:0]MEMTOREG_select,
-    wire [2:0]PCSOURCE_select,
-    wire [1:0]ALUSRCA_select,
-    wire [1:0]ALUSRCB_select,
-    wire HILO_select,
-    wire SHIFTSRCA_select,
-    wire SHIFTSRCB_select,
-    wire [2:0]IORD_select,
+    wire [2:0]REGDST_select;
+    wire [3:0]MEMTOREG_select;
+    wire [2:0]PCSOURCE_select;
+    wire [1:0]ALUSRCA_select;
+    wire [1:0]ALUSRCB_select;
+    wire HILO_select;
+    wire SHIFTSRCA_select;
+    wire SHIFTSRCB_select;
+    wire [2:0]IORD_select;
 
 
     wire [2:0]ALU_control;
     wire [2:0]SHIFT_control;
-
-    //muxes
-    wire [2:0]REGDST_select;
-    wire [3:0]MEMTOREG_select;
-    wire [1:0]ALUSRCA_select;
-    wire [1:0]ALUSRCB_select;
-
 
 //parts of the instruction
     wire [5:0]OPCODE;
@@ -72,12 +65,13 @@ module cpu(
     wire [31:0]aluScrA_out;
     wire [31:0]aluScrB_out;
     wire [31:0]ALUOUT_out;
+    wire [31:0]PCSOURCE_out;
 
     Registrador PC_(
         clk,
         reset,
         PC_write,
-        ALU_result,//botar mux_pcSource
+        PCSOURCE_out,
         PC_out
     );
 
@@ -163,6 +157,15 @@ module cpu(
         EXT16_32_out, // botar siftleft2_out
         aluScrB_out
     );
+    mux_pcSource M_pcSource_(
+        PCSOURCE_select,
+        ALU_result, // botar LS_OUT
+        ALU_result,
+        ALUOUT_out, 
+        ALUOUT_out,// botar siftleft2_out
+        ALUOUT_out,// botar EPC_out
+        PCSOURCE_out
+    );
     ula32 ULA_(
         aluScrA_out,
         aluScrB_out,
@@ -194,6 +197,7 @@ module cpu(
         LT,
         multStop,
         divStop,
+        OPCODE,
         IMMEDIATE[5:0],
         MEM_write,
         MEM_read,
@@ -218,6 +222,6 @@ module cpu(
         HILO_select,
         SHIFTSRCA_select,
         SHIFTSRCB_select,
-        IORD_select,
+        IORD_select
     );
 endmodule
