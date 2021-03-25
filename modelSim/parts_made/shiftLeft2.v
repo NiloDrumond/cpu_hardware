@@ -1,4 +1,4 @@
-module shiftLeft2_2(
+module shiftLeft2(
 input wire [31:0] signExt,
 output reg [31:0] shiftLeft2Out2
 );

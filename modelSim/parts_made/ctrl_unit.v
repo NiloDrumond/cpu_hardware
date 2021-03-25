@@ -11,6 +11,7 @@ module ctrl_unit(
     input wire LT,
     input wire multStop,
     input wire divStop,
+    input wire divZero,
 
 //Instruções
     input wire [5:0]OPCODE,
@@ -19,7 +20,6 @@ module ctrl_unit(
 //Fios de controle
     // Registradores
     output reg MEM_write,
-    output reg MEM_read,
     output reg PC_write,
     output reg IR_write,
     output reg REG_write,
@@ -127,7 +127,6 @@ always @(posedge clk) begin
     if(reset == 1'b1) begin
         STATE = FETCH1;
         MEM_write = 0;
-        MEM_read = 0;
         PC_write = 0;
         IR_write = 0;
         REG_write = 0;
@@ -170,7 +169,6 @@ always @(posedge clk) begin
             FETCH3:begin
                 STATE = DECODE1;
                 PC_write = 0;
-                MEM_read = 0;
                 LS_control = 2'd0;  
                 SS_control = 2'd0;
                 IR_write = 1;
@@ -293,7 +291,6 @@ always @(posedge clk) begin
             END: begin
                 STATE = FETCH1;
                 MEM_write = 0;
-                MEM_read = 0;
                 PC_write = 0;
                 IR_write = 0;
                 REG_write = 0;

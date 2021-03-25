@@ -1,11 +1,11 @@
 module mux_pcSource(
-input wire [2:0] muxpcsource,
-input wire [31:0] LSOut,
-input wire [31:0] aluResult,
-input wire [31:0] aluOutOut,
-input wire [31:0] shiftLeft2Out,
-input wire [31:0] epcOut,
-output reg [31:0] pcSourceOut // saida do mux do pcSource
+    input wire [2:0] muxpcsource,
+    input wire [31:0] LSOut,
+    input wire [31:0] aluResult,
+    input wire [31:0] aluOutOut,
+    input wire [31:0] shiftLeft2Out,
+    input wire [31:0] epcOut,
+    output reg [31:0] pcSourceOut // saida do mux do pcSource
 );
 
 
