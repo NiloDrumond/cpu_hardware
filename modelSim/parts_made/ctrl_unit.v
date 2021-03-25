@@ -46,7 +46,7 @@ module ctrl_unit(
     output reg HILO_select,
     output reg SHIFTSRCA_select,
     output reg SHIFTSRCB_select,
-    output reg [2:0]IORD_select,
+    output reg [2:0]IORD_select
 );
 
 //States
@@ -72,7 +72,6 @@ parameter OPCODEEX2 = 7'd18;
 parameter OPCODEEX3 = 7'd19;
 parameter OPCODEEX4 = 7'd20;
 parameter END = 7'd21;
-
 
 //instr R
 parameter R_FORMAT = 6'd0;
@@ -164,7 +163,7 @@ always @(posedge clk) begin
             end
             FETCH2:begin
                 STATE = FETCH3;
-                PCSOURCE_select = 1;
+                PCSOURCE_select = 3'd1;
                 PC_write = 1;
             end
             FETCH3:begin
@@ -263,7 +262,7 @@ always @(posedge clk) begin
                         STATE = ADDI_ADDIU;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd2;
-                        ALUOUT_control = 3'd3;
+                        ALU_control = 3'd3;
                         ALUOUT_write = 1;
                     end
                 endcase
