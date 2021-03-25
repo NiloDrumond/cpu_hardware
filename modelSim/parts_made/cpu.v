@@ -14,18 +14,42 @@ module cpu(
 //Control wires
     wire PC_write;
     wire MEM_write;
+    wire EPC_write;
+    wire MEM_read;
     wire IR_write;
-    wire RB_write;
+    wire REG_write;
     wire AB_write;
     wire ALUOUT_write;
 
-    wire [2:0]seletor_ALU;
+    wire HILO_write;
+
+    wire multStop,
+    wire divStop;
+    wire MULT_control,
+    wire DIV_control;
+
+    wire [1:0]SS_control,
+    wire [1:0]LS_control,
+
+    wire [2:0]REGDST_select,
+    wire [3:0]MEMTOREG_select,
+    wire [2:0]PCSOURCE_select,
+    wire [1:0]ALUSRCA_select,
+    wire [1:0]ALUSRCB_select,
+    wire HILO_select,
+    wire SHIFTSRCA_select,
+    wire SHIFTSRCB_select,
+    wire [2:0]IORD_select,
+
+
+    wire [2:0]ALU_control;
+    wire [2:0]SHIFT_control;
 
     //muxes
-    wire [2:0]seletor_RegDst;
-    wire [3:0]seletor_memToReg;
-    wire [1:0]seletor_aluScrA;
-    wire [1:0]seletor_aluScrB;
+    wire [2:0]REGDST_select;
+    wire [3:0]MEMTOREG_select;
+    wire [1:0]ALUSRCA_select;
+    wire [1:0]ALUSRCB_select;
 
 
 //parts of the instruction
@@ -75,14 +99,14 @@ module cpu(
         IMMEDIATE
     );
     mux_regDst M_regDst_(
-        seletor_RegDst,
+        REGDST_select,
         RT,
         IMMEDIATE,
         RS,
         regDst_out
     );
     mux_memToReg M_memToReg_(
-        seletor_memToReg,
+        MEMTOREG_select,
         ALU_result,
         ALU_result,
         ALU_result,
@@ -98,7 +122,7 @@ module cpu(
     Banco_reg REG_BASE_(
         clk,
         reset,
-        RB_write,
+        REG_write,
         RS,
         RT,
         regDst_out,
@@ -126,14 +150,14 @@ module cpu(
         EXT16_32_out
     );
     mux_aluSrcA M_ULAA_(
-        seletor_aluScrA,
+        ALUSRCA_select,
         PC_out,
         A_out,
         A_out, // botar mdr_out
         aluScrA_out
     );
     mux_aluSrcB M_ULAB_(
-        seletor_aluScrB,
+        ALUSRCB_select,
         B_out,
         EXT16_32_out,
         EXT16_32_out, // botar siftleft2_out
@@ -142,7 +166,7 @@ module cpu(
     ula32 ULA_(
         aluScrA_out,
         aluScrB_out,
-        seletor_ALU,
+        ALU_control,
         ALU_result,
         overflow,
         NG,
@@ -165,22 +189,35 @@ module cpu(
         overflow,
         NG,
         zero,
-        EQ,
+        ET,
         GT,
         LT,
-        OPCODE,
+        multStop,
+        divStop,
         IMMEDIATE[5:0],
-        PC_write,
         MEM_write,
+        MEM_read,
+        PC_write,
         IR_write,
-        RB_write,
+        REG_write,
         AB_write,
+        HILO_write,
         ALUOUT_write,
-        seletor_ALU,
-        seletor_RegDst,
-        seletor_memToReg,
-        seletor_aluScrA,
-        seletor_aluScrB,
-        reset
+        EPC_write,
+        ALU_control,
+        SHIFT_control,
+        MULT_control,
+        DIV_control,
+        SS_control,
+        LS_control,
+        REGDST_select,
+        MEMTOREG_select,
+        PCSOURCE_select,
+        ALUSRCA_select,
+        ALUSRCB_select,
+        HILO_select,
+        SHIFTSRCA_select,
+        SHIFTSRCB_select,
+        IORD_select,
     );
 endmodule

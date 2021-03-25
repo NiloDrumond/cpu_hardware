@@ -33,8 +33,8 @@ module ctrl_unit(
     output reg [2:0]SHIFT_control,
     output reg MULT_control,
     output reg DIV_control,
-    output reg SS_control,
-    output reg LS_control,
+    output reg [1:0]SS_control,
+    output reg [1:0]LS_control,
 
 
     // Muxes
@@ -138,8 +138,8 @@ always @(posedge clk) begin
         SHIFT_control = 3'd0;
         MULT_control = 0;
         DIV_control = 0;
-        SS_control = 0;
-        LS_control = 0;
+        SS_control = 2'd0;
+        LS_control = 2'd0;
         REGDST_select = 3'd0;
         MEMTOREG_select = 4'd0;
         PCSOURCE_select = 3'd0;
@@ -169,8 +169,8 @@ always @(posedge clk) begin
                 STATE = DECODE1;
                 PC_write = 0;
                 MEM_read = 0;
-                LS_control = 0;
-                SS_control = 0;
+                LS_control = 2'd0;
+                SS_control = 2'd0;
                 IR_write = 1;
             end
             DECODE1:begin
@@ -297,8 +297,8 @@ always @(posedge clk) begin
                 SHIFT_control = 3'd0;
                 MULT_control = 0;
                 DIV_control = 0;
-                SS_control = 0;
-                LS_control = 0;
+                SS_control = 2'd0;
+                LS_control = 2'd0;
                 REGDST_select = 3'd0;
                 MEMTOREG_select = 4'd0;
                 PCSOURCE_select = 3'd0;
