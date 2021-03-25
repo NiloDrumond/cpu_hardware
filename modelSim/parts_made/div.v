@@ -14,7 +14,7 @@ module div(
 integer counter = 31;
 reg [31:0] quociente;
 reg [31:0] resto;
-reg [31:0] dividendoo;
+reg [31:0] dividendo;
 reg [31:0] divisor;
 reg negativo;
 reg divNegativo;

@@ -194,6 +194,7 @@ module cpu(
         LT,
         multStop,
         divStop,
+        OPCODE,
         IMMEDIATE[5:0],
         MEM_write,
         MEM_read,
@@ -218,6 +219,6 @@ module cpu(
         HILO_select,
         SHIFTSRCA_select,
         SHIFTSRCB_select,
-        IORD_select,
+        IORD_select
     );
 endmodule

@@ -71,6 +71,7 @@ parameter OPCODEEX = 7'd17;
 parameter OPCODEEX2 = 7'd18;
 parameter OPCODEEX3 = 7'd19;
 parameter OPCODEEX4 = 7'd20;
+parameter END = 7'd21;
 
 
 //instr R
@@ -157,8 +158,9 @@ always @(posedge clk) begin
                 IORD_select = 3'd0;
                 ALUSRCA_select = 2'd0;
                 ALUSRCB_select = 2'd1;
+                REG_write = 0;
                 ALU_control = 3'd1;
-                MEM_read = 1;
+                MEM_write = 0;
             end
             FETCH2:begin
                 STATE = FETCH3;
@@ -169,7 +171,7 @@ always @(posedge clk) begin
                 STATE = DECODE1;
                 PC_write = 0;
                 MEM_read = 0;
-                LS_control = 2'd0;
+                LS_control = 2'd0;  
                 SS_control = 2'd0;
                 IR_write = 1;
             end
@@ -218,7 +220,7 @@ always @(posedge clk) begin
                     BLM: STATE = BLM;
                     LB: STATE = LB;
                     LH: STATE = LH;
-                    LW: STATE = W;
+                    LW: STATE = LW;
                     SB: STATE = SB;
                     SH: STATE = SH;
                     SW: STATE = SW;
@@ -233,28 +235,28 @@ always @(posedge clk) begin
                         STATE = ALUOUT_TO_REG;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd0;
-                        ALUOUT_control = 3'd1;
+                        ALU_control = 3'd1;
                         ALUOUT_write = 1;
                     end
                     SUB:begin
                         STATE = ALUOUT_TO_REG;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd0;
-                        ALUOUT_control = 3'd2;
+                        ALU_control = 3'd2;
                         ALUOUT_write = 1;
                     end
                     AND:begin
                         STATE = ALUOUT_TO_REG;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd0;
-                        ALUOUT_control = 3'd3;
+                        ALU_control = 3'd3;
                         ALUOUT_write = 1;
                     end
                     ADDI:begin
                         STATE = ADDI_ADDIU;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd2;
-                        ALUOUT_control = 3'd1;
+                        ALU_control = 3'd1;
                         ALUOUT_write = 1;
                     end
                     ADDIU:begin
@@ -277,9 +279,8 @@ always @(posedge clk) begin
             ALUOUT_TO_REG:begin
                 STATE = END;
                 ALUOUT_write = 0;
-                ALU_control = 3'd1;
-                REGDST_select = 1;
-                MEMTOREG_select = 0;
+                REGDST_select = 3'd1;
+                MEMTOREG_select = 4'd0;
                 REG_write = 1;
             end
             END: begin

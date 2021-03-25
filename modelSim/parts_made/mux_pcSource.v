@@ -11,7 +11,7 @@ output reg [31:0] pcSourceOut // saida do mux do pcSource
 
 always @ (*) begin
 	case (muxpcsource)
-        3'd0:pcSourceOut = LSControlOut;
+    3'd0:pcSourceOut = LSControlOut;
 		3'd1:pcSourceOut = aluResult;
 		3'd2:pcSourceOut = aluOutOut;
 		3'd3:pcSourceOut = shiftLeft2Out;
