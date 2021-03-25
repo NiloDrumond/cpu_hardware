@@ -20,5 +20,5 @@ always @ (*) begin
 		3'b100: iordOut = E;
 		3'b101: iordOut = F;
 	endcase
-	
+end
 endmodule
