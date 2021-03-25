@@ -232,7 +232,7 @@ always @(posedge clk) begin
                 AB_write = 0;
                 case(STATE)
                     ADD:begin
-                        STATE = ALUOUT_TO_REG;
+                        STATE = ALUOUT_TO_RD;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd0;
                         ALU_control = 3'd1;
