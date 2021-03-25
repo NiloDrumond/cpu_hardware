@@ -130,13 +130,6 @@ Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 
 Top level modules:
 	setSize
 
-} {} {}} C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/cpu.v {1 {vlog -work work -stats=none C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/cpu.v
-Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
--- Compiling module cpu
-
-Top level modules:
-	cpu
-
 } {} {}} C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/shiftLeft16.v {1 {vlog -work work -stats=none C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/shiftLeft16.v
 Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
 -- Compiling module shiftLeft16
