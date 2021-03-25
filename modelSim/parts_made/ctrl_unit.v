@@ -58,7 +58,8 @@ parameter DECODE2 = 7'd4;
 parameter WAIT = 6'd5;
 parameter EXECUTE = 7'd6;
 parameter ADDI_ADDIU = 6'd7;
-parameter ALUOUT_TO_REG = 6'd8;
+parameter ALUOUT_TO_RD = 6'd8;
+parameter ALUOUT_TO_RT = 6'd22;
 parameter OVERFLOWEX = 7'd9;
 parameter OVERFLOWEX2 = 7'd10;
 parameter OVERFLOWEX3 = 7'd11;
@@ -238,14 +239,14 @@ always @(posedge clk) begin
                         ALUOUT_write = 1;
                     end
                     SUB:begin
-                        STATE = ALUOUT_TO_REG;
+                        STATE = ALUOUT_TO_RD;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd0;
                         ALU_control = 3'd2;
                         ALUOUT_write = 1;
                     end
                     AND:begin
-                        STATE = ALUOUT_TO_REG;
+                        STATE = ALUOUT_TO_RD;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd0;
                         ALU_control = 3'd3;
@@ -272,13 +273,20 @@ always @(posedge clk) begin
                     STATE = OVERFLOWEX;
                 end
                 else begin
-                    STATE = ALUOUT_TO_REG;
+                    STATE = ALUOUT_TO_RT;
                 end
             end
-            ALUOUT_TO_REG:begin
+            ALUOUT_TO_RD:begin
                 STATE = END;
                 ALUOUT_write = 0;
                 REGDST_select = 3'd1;
+                MEMTOREG_select = 4'd0;
+                REG_write = 1;
+            end
+            ALUOUT_TO_RT:begin
+                STATE = END;
+                ALUOUT_write = 0;
+                REGDST_select = 3'd0;
                 MEMTOREG_select = 4'd0;
                 REG_write = 1;
             end
