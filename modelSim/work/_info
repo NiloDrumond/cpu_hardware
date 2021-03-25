@@ -1,0 +1,644 @@
+m255
+K4
+z2
+!s11e vcom 2020.1 2020.02, Feb 28 2020
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1/modelsim_ase/win32aloem
+Ebanco_reg
+Z0 w1616617245
+Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 180
+Z4 dC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim
+Z5 8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Banco_reg.vhd
+Z6 FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Banco_reg.vhd
+l0
+L69 1
+V:adHbk0Ym0TAKYW83J5Y[3
+!s100 hZ46CT_BzQl8j]02_Vf=o2
+Z7 OV;C;2020.1;71
+32
+Z8 !s110 1616629526
+!i10b 1
+Z9 !s108 1616629525.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Banco_reg.vhd|
+Z11 !s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Banco_reg.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Abehavioral_arch
+R1
+R2
+R3
+DEx4 work 9 banco_reg 0 22 :adHbk0Ym0TAKYW83J5Y[3
+!i122 180
+l93
+L85 34
+VY7l=BkTbhRVIWWGL4mMo60
+!s100 RmVnX=Z0eZ>VP`R`^LJ]Q1
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+vconcat
+Z14 !s110 1616629527
+!i10b 1
+!s100 dBOXdo1FkLAPKi>S=<55f3
+Z15 !s11b Dg1SIo80bB@j0V0VzS_@n1
+INMh?[oYje9[i6l7G_C;Ed2
+Z16 VDg1SIo80bB@j0V0VzS_@n1
+R4
+w1616616246
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/concat.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/concat.v
+!i122 186
+L0 1 24
+Z17 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z18 !s108 1616629527.000000
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/concat.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/concat.v|
+!i113 1
+Z19 o-work work
+Z20 tCvgOpt 0
+vcpu
+!s110 1616630874
+!i10b 1
+!s100 [EW<<f;KfB4c_<e6Yb]EP0
+R15
+Ik^PL4mlY6D`]B>YSG[l]=1
+R16
+R4
+w1616629465
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/cpu.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/cpu.v
+!i122 202
+L0 1 186
+R17
+r1
+!s85 0
+31
+!s108 1616630874.000000
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/cpu.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/cpu.v|
+!i113 1
+R19
+R20
+vctrl_unit
+!s110 1616630869
+!i10b 1
+!s100 _MUiXjKcje0oTg?b22@XF3
+R15
+I3CF[Za^WV:3KT60XoRP082
+R16
+R4
+w1616630726
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/ctrl_unit.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/ctrl_unit.v
+!i122 201
+L0 1 305
+R17
+r1
+!s85 0
+31
+!s108 1616630869.000000
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/ctrl_unit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/ctrl_unit.v|
+!i113 1
+R19
+R20
+Einstr_reg
+R0
+R2
+R3
+!i122 181
+R4
+Z21 8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Instr_Reg.vhd
+Z22 FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Instr_Reg.vhd
+l0
+L42 1
+VAfV1kYS402dnLRiFO;Z7_2
+!s100 _X]FAEHlMn?]L[?c6kUO?1
+R7
+32
+R8
+!i10b 1
+Z23 !s108 1616629526.000000
+Z24 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Instr_Reg.vhd|
+Z25 !s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Instr_Reg.vhd|
+!i113 1
+R12
+R13
+Abehavioral_arch
+R2
+R3
+DEx4 work 9 instr_reg 0 22 AfV1kYS402dnLRiFO;Z7_2
+!i122 181
+l59
+L56 32
+VTD836jU:>9m^d?0ed1C0O3
+!s100 _AcjR?n;fJneQZzaIjJFa3
+R7
+32
+R8
+!i10b 1
+R23
+R24
+R25
+!i113 1
+R12
+R13
+vloadSize
+R14
+!i10b 1
+!s100 8d1EmSmW79k=PaMFbD4680
+R15
+I8>`T9AoBPAUzb^CRfNnk42
+R16
+R4
+Z26 w1616594746
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/loadSize.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/loadSize.v
+!i122 189
+Z27 L0 1 17
+R17
+r1
+!s85 0
+31
+R18
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/loadSize.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/loadSize.v|
+!i113 1
+R19
+R20
+nload@size
+Ememoria
+R0
+Z28 DPx4 work 13 ram_constants 0 22 BbIcggj=<H_W75Jb?WIoZ0
+Z29 DPx3 lpm 14 lpm_components 0 22 ZZ?0`GZD@?:kcFM0gmf[@1
+R1
+R2
+R3
+!i122 182
+R4
+Z30 8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Memoria.vhd
+Z31 FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Memoria.vhd
+l0
+L67 1
+V<[RFRXeHV^PMOiiinkBoS0
+!s100 __XEo>II7SFLX6Xa7VZA63
+R7
+32
+R8
+!i10b 1
+R23
+Z32 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Memoria.vhd|
+Z33 !s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Memoria.vhd|
+!i113 1
+R12
+R13
+Abehavioral_arch
+R28
+R29
+R1
+R2
+R3
+DEx4 work 7 memoria 0 22 <[RFRXeHV^PMOiiinkBoS0
+!i122 182
+l103
+L79 78
+VR9W83dOfA7lWR9j>i6THA2
+!s100 aLo:Seezh^aEQ@MaJf[__3
+R7
+32
+R8
+!i10b 1
+R23
+R32
+R33
+!i113 1
+R12
+R13
+vmux_aluSrcA
+R14
+!i10b 1
+!s100 ;AghdfCSZVcnDQh5zDH3Z3
+R15
+I<WLebeOTKEAdYT`JQl?NH2
+R16
+R4
+w1616594050
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_aluSrcA.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_aluSrcA.v
+!i122 190
+R27
+R17
+r1
+!s85 0
+31
+R18
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_aluSrcA.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_aluSrcA.v|
+!i113 1
+R19
+R20
+nmux_alu@src@a
+vmux_aluSrcB
+R14
+!i10b 1
+!s100 2]8YUSh3;gnN9^ljZdjKo3
+R15
+IWal:Dzl1m9YVZI8=LSUJT1
+R16
+R4
+w1616596599
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_aluSrcB.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_aluSrcB.v
+!i122 191
+L0 1 18
+R17
+r1
+!s85 0
+31
+R18
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_aluSrcB.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_aluSrcB.v|
+!i113 1
+R19
+R20
+nmux_alu@src@b
+vmux_memToReg
+Z34 !s110 1616629528
+!i10b 1
+!s100 87kW5i`cAL>8@<LHDOnP;1
+R15
+IiW:ngj4O=dXBE;PFU9:i?3
+R16
+R4
+w1616629155
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_memToReg.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_memToReg.v
+!i122 192
+L0 1 32
+R17
+r1
+!s85 0
+31
+R18
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_memToReg.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_memToReg.v|
+!i113 1
+R19
+R20
+nmux_mem@to@reg
+vmux_pcSource
+R34
+!i10b 1
+!s100 2o6NPMJ;]6PD7`1bD6DbK1
+R15
+IoTGf[OC=82aEXQf]C;0B;1
+R16
+R4
+w1616597111
+Z35 8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_pcSource.v
+Z36 FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_pcSource.v
+!i122 193
+Z37 L0 1 21
+R17
+r1
+!s85 0
+31
+Z38 !s108 1616629528.000000
+Z39 !s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_pcSource.v|
+Z40 !s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_pcSource.v|
+!i113 1
+R19
+R20
+nmux_pc@source
+vmux_regDst
+R34
+!i10b 1
+!s100 a[>A4^a;3eP_Z=1a>P`j_2
+R15
+I]ohkET^bUOX_o>M?aG`h11
+R16
+R4
+w1616594892
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_regDst.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_regDst.v
+!i122 194
+L0 1 20
+R17
+r1
+!s85 0
+31
+R38
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_regDst.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/mux_regDst.v|
+!i113 1
+R19
+R20
+nmux_reg@dst
+vpcSource
+!s110 1616596986
+R16
+r1
+!s85 0
+!i10b 1
+!s100 ^Mh^Sfo[74Wh]N<Gm2b=P0
+I[58@]0F2bR;feT?dZNXX10
+R4
+w1616596976
+R35
+R36
+!i122 21
+R37
+R17
+31
+!s108 1616596986.000000
+R39
+R40
+!i113 1
+R19
+R20
+npc@source
+Pram_constants
+!i122 182
+R0
+R4
+R30
+R31
+l0
+L47 1
+VBbIcggj=<H_W75Jb?WIoZ0
+!s100 5;`Z:D@MR5CT6j_[c9;6h3
+R7
+32
+R8
+!i10b 1
+R23
+R32
+R33
+!i113 1
+R12
+R13
+Eregdesloc
+R0
+R1
+R2
+R3
+!i122 183
+R4
+Z41 8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/RegDesloc.vhd
+Z42 FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/RegDesloc.vhd
+l0
+L80 1
+V4GibeROOKf]^CUjTE67Bo0
+!s100 =0ZG0kkZKT?Zo?iX2R9=P1
+R7
+32
+R8
+!i10b 1
+R23
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/RegDesloc.vhd|
+Z44 !s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/RegDesloc.vhd|
+!i113 1
+R12
+R13
+Abehavioral_arch
+R1
+R2
+R3
+DEx4 work 9 regdesloc 0 22 4GibeROOKf]^CUjTE67Bo0
+!i122 183
+l98
+L93 38
+VDFCTADkAb^4XhT09kD<k32
+!s100 3`2HClJO^bJLd6@PodWh?3
+R7
+32
+R8
+!i10b 1
+R23
+R43
+R44
+!i113 1
+R12
+R13
+Eregistrador
+R0
+R2
+R3
+!i122 184
+R4
+Z45 8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Registrador.vhd
+Z46 FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Registrador.vhd
+l0
+L53 1
+VD=`aG^VOPEDP69ifb8G;52
+!s100 ^e8=Z<CbNTLXR@XGZJMQo3
+R7
+32
+R8
+!i10b 1
+R23
+Z47 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Registrador.vhd|
+Z48 !s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/Registrador.vhd|
+!i113 1
+R12
+R13
+Abehavioral_arch
+R2
+R3
+DEx4 work 11 registrador 0 22 D=`aG^VOPEDP69ifb8G;52
+!i122 184
+l66
+L65 19
+V<kVfXRZJUh40ja<<lN_3:3
+!s100 EXKKzlBL1ARAk5TCN4`Vg2
+R7
+32
+R8
+!i10b 1
+R23
+R47
+R48
+!i113 1
+R12
+R13
+vsetSize
+R34
+!i10b 1
+!s100 zAPR?[_ZCQR:GNYE3jm9i0
+R15
+I1<PLPJnUi7:W@7n2WX;Je1
+R16
+R4
+w1616613442
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/setSize.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/setSize.v
+!i122 195
+L0 1 16
+R17
+r1
+!s85 0
+31
+R38
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/setSize.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/setSize.v|
+!i113 1
+R19
+R20
+nset@size
+vshiftLeft16
+R34
+!i10b 1
+!s100 h=i=R:G^fBbDgKVH4eVDK1
+R15
+IQ_HND=PBf0ZYiZmN?2Kij1
+R16
+R4
+R26
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/shiftLeft16.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/shiftLeft16.v
+!i122 197
+Z49 L0 1 10
+R17
+r1
+!s85 0
+31
+R38
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/shiftLeft16.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/shiftLeft16.v|
+!i113 1
+R19
+R20
+nshift@left16
+vshiftLeft2_2
+R34
+!i10b 1
+!s100 C`RG9cLaaBhU^Lof0TmU^1
+R15
+ImFFd<YRMLde;YKi5J>27c1
+R16
+R4
+R26
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/shiftLeft2_2.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/shiftLeft2_2.v
+!i122 196
+R49
+R17
+r1
+!s85 0
+31
+R38
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/shiftLeft2_2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/shiftLeft2_2.v|
+!i113 1
+R19
+R20
+nshift@left2_2
+vsign_xtend_16_to_32
+!s110 1616629529
+!i10b 1
+!s100 4ESHkIB=U4Rm?QdnLGC^<2
+R15
+I3MY?3R;fjC7iOc5f:;HDR3
+R16
+R4
+w1616546847
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/sign_xtend_16_to_32.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/sign_xtend_16_to_32.v
+!i122 199
+L0 1 6
+R17
+r1
+!s85 0
+31
+R38
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/sign_xtend_16_to_32.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/sign_xtend_16_to_32.v|
+!i113 1
+R19
+R20
+vsign_xtend_1_to_32
+R34
+!i10b 1
+!s100 `HTBIeYjGOUBf0NQz]d^O3
+R15
+IXcUnoBYOH8AZ]FQ39dR@[2
+R16
+R4
+w1616598413
+8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/sign_xtend_1_to_32.v
+FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/sign_xtend_1_to_32.v
+!i122 198
+L0 1 8
+R17
+r1
+!s85 0
+31
+R38
+!s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/sign_xtend_1_to_32.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_made/sign_xtend_1_to_32.v|
+!i113 1
+R19
+R20
+Eula32
+R0
+R1
+R2
+R3
+!i122 185
+R4
+Z50 8C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/ula32.vhd
+Z51 FC:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/ula32.vhd
+l0
+L63 1
+VM1`EhBco;Cb9<:6CC>b?e2
+!s100 bGmbVJaTC>R`I<lBgn7@L3
+R7
+32
+R8
+!i10b 1
+R23
+Z52 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/ula32.vhd|
+Z53 !s107 C:/Users/gabri/Desktop/hardware/cpu_hardware/modelSim/parts_given/ula32.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R1
+R2
+R3
+DEx4 work 5 ula32 0 22 M1`EhBco;Cb9<:6CC>b?e2
+!i122 185
+l89
+L79 138
+VF94M;2UJ^55hCen3Z[Kfk0
+!s100 1E>E2KjDKb=5dkES8U2ha0
+R7
+32
+R8
+!i10b 1
+R23
+R52
+R53
+!i113 1
+R12
+R13

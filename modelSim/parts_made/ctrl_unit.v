@@ -191,11 +191,6 @@ always @(posedge clk) begin
                 RB_write = 1'b0;
                 AB_write = 1'b0;
                 ALUOUT_write = 1'b0;
-                seletor_ALU = 3'b000;
-                seletor_RegDst = 2'b00;
-                seletor_memToReg = 3'b000;
-                seletor_aluScrA = 2'b00;
-                seletor_aluScrB = 2'b00;
                 reset_out = 1'b0;
             end
             ST_ADD:begin
