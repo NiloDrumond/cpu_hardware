@@ -346,28 +346,28 @@ always @(posedge clk) begin
                         ALUOUT_write = 1;
                     end
                     BEQ: begin
-                       ALUSRCA_select = 1; 
-                       ALUSRCB_select = 1; 
+                       ALUSRCA_select = 2'd1; 
+                       ALUSRCB_select = 2'd0; 
                        ALU_control = 3'b111;
                        STATE = BEQ2;
                     end 
                     BNE: begin
-                       ALUSRCA_select = 1; 
-                       ALUSRCB_select = 1; 
+                       ALUSRCA_select = 2'd1; 
+                       ALUSRCB_select = 2'd0;  
                        ALU_control = 3'b111;
                        STATE = BNE2;
                     end 
                    BLE: begin
-                       ALUSRCA_select = 1; 
-                       ALUSRCB_select = 1; 
-                       ALU_control = 3'b111;
-                       STATE = BLE2;
+                        ALUSRCA_select = 2'd1; 
+                        ALUSRCB_select = 2'd0; 
+                        ALU_control = 3'b111;
+                        STATE = BLE2;
                     end 
                     BGT: begin
-                       ALUSRCA_select = 1; 
-                       ALUSRCB_select = 1; 
-                       ALU_control = 3'b111;
-                       STATE = BGT2;
+                        ALUSRCA_select = 2'd1; 
+                        ALUSRCB_select = 2'd0; 
+                         ALU_control = 3'b111;
+                         STATE = BGT2;
                     end 
                     BLM: begin
                         ALUSRCA_select = 1; 
