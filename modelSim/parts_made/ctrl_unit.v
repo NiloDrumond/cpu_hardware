@@ -101,32 +101,32 @@ parameter SB4 = 7'd52;
 
 //instr R
 parameter R_FORMAT = 6'd0;
-parameter AND = 6'd36;
-parameter ADD = 6'd32;
-parameter SUB = 6'd34;
-parameter DIV = 6'd26;
-parameter MULT = 6'd24;
-parameter JR = 6'd8;
-parameter MFHI = 6'd16;
-parameter MFLO = 6'd18;
-parameter BREAK = 6'd13;
-parameter RTE = 6'd19;
-parameter XCGH = 6'd5;
-parameter SLT = 6'd42;
-parameter SLL = 6'd0;
-parameter SRL = 6'd2;
-parameter SRA = 6'd3;
-parameter SLLV = 6'd4;
-parameter SRAV = 6'd7;
+parameter ADD = 6'h20;
+parameter AND = 6'h24;
+parameter SUB = 6'h22;
+parameter DIV = 6'h1a;
+parameter MULT = 6'h18;
+parameter JR = 6'h8;
+parameter MFHI = 6'h10;
+parameter MFLO = 6'h12;
+parameter BREAK = 6'hD;
+parameter RTE = 6'h13;
+parameter XCGH = 6'h5;
+parameter SLT = 6'h2a;
+parameter SLL = 6'h0;
+parameter SRL = 6'h2;
+parameter SRA = 6'h3;
+parameter SLLV = 6'h4;
+parameter SRAV = 6'h7   ;
 
 //instr I
-parameter ADDI = 6'd8;
-parameter ADDIU = 6'd9;
-parameter BEQ = 6'd4;
-parameter BNE = 6'd5;
-parameter BLE = 6'd6;
-parameter BGT = 6'd7;
-parameter BLM = 6'd1;
+parameter ADDI = 6'h8;
+parameter ADDIU = 6'h9;
+parameter BEQ = 6'h4;
+parameter BNE = 6'h5;
+parameter BLE = 6'h6;
+parameter BGT = 6'h7;
+parameter BLM = 6'h1;
 parameter LB = 6'h20;
 parameter LH = 6'h21;
 parameter LW = 6'hF;
@@ -508,7 +508,6 @@ always @(posedge clk) begin
                 MEMTOREG_select = 1;
                 REGDST_select = 0;
             end
-
             XCGH2: begin
                 STATE = END;
                 MEMTOREG_select = 4'10;
