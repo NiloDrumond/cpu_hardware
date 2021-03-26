@@ -655,14 +655,15 @@ always @(posedge clk) begin
                 STATE = END;                
             end
             ALUOUT_TO_RD:begin
-                if (overflow == 1 && (OPCODE == ADD || OPCODE == SUB)) begin // overflow apenas no addi
+                if (overflow == 1 && (FUNCT == ADD || FUNCT == SUB)) begin // overflow apenas no addi
                     STATE = OVERFLOWEX1;
-                end 
-                STATE = END;
-                ALUOUT_write = 0;
-                REGDST_select = 3'd1;
-                MEMTOREG_select = 4'd0;
-                REG_write = 1;
+                end else begin
+                    STATE = END;
+                    ALUOUT_write = 0;
+                    REGDST_select = 3'd1;
+                    MEMTOREG_select = 4'd0;
+                    REG_write = 1;
+                end
             end
             ALUOUT_TO_RT:begin
                 if (overflow == 1 && OPCODE == ADDI) begin // overflow apenas no addi
