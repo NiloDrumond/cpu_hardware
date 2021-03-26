@@ -212,71 +212,111 @@ always @(posedge clk) begin
                 ALUOUT_write = 0;
             end
             EXECUTE:begin
+                AB_write = 0;   
                 case(OPCODE)
                     R_FORMAT: begin
                         case(FUNCT)
-                            ADD: STATE = ADD; 
-                            SUB: STATE = SUB; 
-                            AND: STATE = AND; 
-                            DIV: STATE = DIV; 
-                            MULT: STATE = MULT; 
-                            JR: STATE = JR; 
-                            MFHI: STATE = MFHI; 
-                            MFLO: STATE = MFLO; 
-                            BREAK: STATE = BREAK; 
-                            RTE: STATE = RTE; 
-                            XCGH: STATE = XCGH; 
-                            SLT: STATE = SLT;  
-                            SLL: STATE = SLL; 
-                            SRL: STATE = SRL; 
-                            SRA: STATE = SRA; 
-                            SLLV: STATE = SLLV; 
-                            SRAV: STATE = SRAV; 
+                            ADD: begin
+                                STATE = ALUOUT_TO_RD;
+                                ALUSRCA_select = 2'd1;
+                                ALUSRCB_select = 2'd0;
+                                ALU_control = 3'd1;
+                                ALUOUT_write = 1;
+                            end
+                            SUB: begin
+                                STATE = ALUOUT_TO_RD;
+                                ALUSRCA_select = 2'd1;
+                                ALUSRCB_select = 2'd0;
+                                ALU_control = 3'd2;
+                                ALUOUT_write = 1;
+                            end
+                            AND: begin
+                                STATE = ALUOUT_TO_RD;
+                                ALUSRCA_select = 2'd1;
+                                ALUSRCB_select = 2'd0;
+                                ALU_control = 3'd3;
+                                ALUOUT_write = 1;
+                            end
+                            DIV: begin
+                                STATE = DIV2;
+                                DIV_control = 1;
+                            end     
+                            MULT: begin
+                                STATE = MULT2;
+                                MULT_control = 1;
+                            end
+                            JR: begin
+                                STATE = END;
+                                ALUSRCA_select = 2'd1;
+                                ALU_control = 3'd0;
+                                PCSOURCE_select = 3'd1;
+                                PC_write = 1;
+                            end
+                            MFHI: begin
+                                STATE = END;
+                                MEMTOREG_select = 4'd02;
+                                REGDST_select = 3'd1;
+                            end
+                            MFLO: begin
+                                STATE = END;
+                                MEMTOREG_select = 4'd03;
+                                REGDST_select = 3'd1;
+                            end
+                            BREAK: begin
+                                STATE = END;
+                                ALUSRCA_select = 2'd0;
+                                ALUSCRB_select = 2'd1;
+                                ALU_control = 3'd2;
+                                PCSOURCE_select = 3'd1;
+                                PC_write = 1;
+                            end
+                            SLT: begin
+                                STATE = END;
+                                ALUSRCA_select = 2'd1;
+                                ALUSCRB_select = 2'd0;
+                                ALU_control = 3'd7;
+                                REGDST_select = 3'd1;
+                                MEMTOREG_select = 4'd1;
+                                REG_write = 1;
+                            end
+                            RTE: STATE = RTE; // todo
+                            XCGH: begin
+                                STATE = XCGH2;
+                                MEMTOREG_select = 4'd09;
+                                REGDST_select = 3'd0;
+                                REG_write = 1;
+                            end
+                            SLL: begin
+                                SHIFTSRCA_select = 1;
+                                SHIFTSRCB_select = 1;
+                                SHIFT_control = 3'd1;
+                                STATE = SLL2;
+                            end
+                            SRL: begin
+                                SHIFTSRCA_select = 1;
+                                SHIFTSRCB_select = 1;
+                                SHIFT_control = 3'd1;
+                                STATE = SRL2;
+                            end 
+                            SRA: begin
+                                SHIFTSRCA_select = 1;
+                                SHIFTSRCB_select = 1;
+                                SHIFT_control = 3'd1;
+                                STATE = SRA2;
+                            end 
+                            SLLV: begin
+                                SHIFTSRCA_select = 0;
+                                SHIFTSRCB_select = 0;
+                                SHIFT_control = 3'd1;
+                                STATE = SLLV2;
+                            end
+                            SRAV begin
+                                SHIFTSRCA_select = 0;
+                                SHIFTSRCB_select = 0;
+                                SHIFT_control = 3'd1;
+                                STATE = SRAV2;
+                            end
                         endcase
-                    end
-                    ADDI: STATE = ADDI; 
-                    ADDIU: STATE = ADDIU; 
-                    BEQ: STATE = BEQ; 
-                    BNE: STATE = BNE; 
-                    BLE: STATE = BLE; 
-                    BGT: STATE = BGT; 
-                    BLM: STATE = BLM; 
-                    LB: STATE = LB; 
-                    LH: STATE = LH; 
-                    LW: STATE = LW; 
-                    SB: STATE = SB; 
-                    SH: STATE = SH; 
-                    SW: STATE = SW;  
-                    LUI: STATE = LUI; 
-                    SLTI: STATE = SLTI; 
-                    J: STATE = J; 
-                    JAL: STATE = JAL; 
-                    default: begin// OPCODE Inexistente
-                        STATE = OPCODEEX1;
-                    end
-                endcase
-                AB_write = 0;
-                case(STATE)
-                    ADD: begin
-                        STATE = ALUOUT_TO_RD;
-                        ALUSRCA_select = 2'd1;
-                        ALUSRCB_select = 2'd0;
-                        ALU_control = 3'd1;
-                        ALUOUT_write = 1;
-                    end
-                    SUB: begin
-                        STATE = ALUOUT_TO_RD;
-                        ALUSRCA_select = 2'd1;
-                        ALUSRCB_select = 2'd0;
-                        ALU_control = 3'd2;
-                        ALUOUT_write = 1;
-                    end
-                    AND: begin
-                        STATE = ALUOUT_TO_RD;
-                        ALUSRCA_select = 2'd1;
-                        ALUSRCB_select = 2'd0;
-                        ALU_control = 3'd3;
-                        ALUOUT_write = 1;
                     end
                     ADDI: begin
                         STATE = ADDI_ADDIU;
@@ -286,125 +326,22 @@ always @(posedge clk) begin
                         ALUOUT_write = 1;
                     end
                     ADDIU: begin
-                        STATE = ADDI_ADDIU;
+                    STATE = ADDI_ADDIU;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd2;
                         ALU_control = 3'd3;
                         ALUOUT_write = 1;
                     end
-                    MULT: begin
-                        STATE = MULT2;
-                        MULT_control = 1;
-                    end
-                    DIV: begin
-                        STATE = DIV2;
-                        DIV_control = 1;
-                    end
-                    SLLV: begin
-                        SHIFTSRCA_select = 0;
-                        SHIFTSRCB_select = 0;
-                        SHIFT_control = 3'd1;
-                        STATE = SLLV2;
-                    end
-                    SRAV: begin
-                        SHIFTSRCA_select = 0;
-                        SHIFTSRCB_select = 0;
-                        SHIFT_control = 3'd1;
-                        STATE = SRAV2;
-                    end
-                    SLL: begin
-                        SHIFTSRCA_select = 1;
-                        SHIFTSRCB_select = 1;
-                        SHIFT_control = 3'd1;
-                        STATE = SLL2;
-                    end
-                    SRL: begin
-                        SHIFTSRCA_select = 1;
-                        SHIFTSRCB_select = 1;
-                        SHIFT_control = 3'd1;
-                        STATE = SRL2;
-                    end
-                    SRA: begin
-                        SHIFTSRCA_select = 1;
-                        SHIFTSRCB_select = 1;
-                        SHIFT_control = 3'd1;
-                        STATE = SRA2;
-                    end
                     BEQ, BNE, BLE, BGT: begin
                        ALUSRCA_select = 1; 
                        ALUSRCB_select = 1; 
                        ALU_control = 3'b111;
-                    end
+                    end 
                     BLM: begin
                         ALUSRCA_select = 1; 
                         ALUSRCB_select = 1; 
                         ALU_control = 3'b000;
                         IORD_select = 3'd1;
-                    end
-                    JR: begin
-                        STATE = END;
-                        ALUSRCA_select = 2'd1;
-                        ALU_control = 3'd0;
-                        PCSOURCE_select = 3'd1;
-                        PC_write = 1;
-                    end
-                    J: begin
-                        STATE = END;
-                        PCSOURCE_select = 3'd3;
-                        PC_write = 1;
-                    end
-                    JAL: begin
-                        ALUSRCA_select = 2'd0;
-                        ALU_control = 3'd0;
-                        ALUOUT_write = 1;
-                    end
-                    MFHI: begin
-                        STATE = END;
-                        MEMTOREG_select = 4'd02;
-                        REGDST_select = 3'd1;
-                    end
-                    MFLO: begin
-                        STATE = END;
-                        MEMTOREG_select = 4'd03;
-                        REGDST_select = 3'd1;
-                    end
-                    BREAK: begin
-                        STATE = END;
-                        ALUSRCA_select = 2'd0;
-                        ALUSCRB_select = 2'd1;
-                        ALU_control = 3'd2;
-                        PCSOURCE_select = 3'd1;
-                        PC_write = 1;
-                    end
-                    SLT: begin
-                        STATE = END;
-                        ALUSRCA_select = 2'd1;
-                        ALUSCRB_select = 2'd0;
-                        ALU_control = 3'd7;
-                        REGDST_select = 3'd1;
-                        MEMTOREG_select = 4'd1;
-                        REG_write = 1;
-                    end
-                    SLTI: begin
-                        STATE = END;
-                        ALUSRCA_select = 2'd1;
-                        ALUSCRB_select = 2'd2;
-                        ALU_control = 3'd7;
-                        REGDST_select = 3'd0;
-                        MEMTOREG_select = 4'd4;
-                        REG_write = 1;
-                    end
-                    XCGH: begin
-                        STATE = XCGH2;
-                        MEMTOREG_select = 4'd09;
-                        REGDST_select = 3'd0;
-                        REG_write = 1;
-                    end
-                    LUI: begin
-                        STATE = END;
-                        MEMTOREG_select = 4'd6;
-                        REGDST_select = 3'd0;
-                        REG_write = 1;
                     end
                     SW, SH, SB: begin
                         ALUSRCA_select = 2'd1;
@@ -418,9 +355,37 @@ always @(posedge clk) begin
                         ALU_control = 3'd1;
                         IORD_select = 1;
                         MEM_write = 0;
-                    end                 
-                endcase
-            end
+                    end  
+                    SLTI: begin
+                        STATE = END;
+                        ALUSRCA_select = 2'd1;
+                        ALUSCRB_select = 2'd2;
+                        ALU_control = 3'd7;
+                        REGDST_select = 3'd0;
+                        MEMTOREG_select = 4'd4;
+                        REG_write = 1;
+                    end
+                    LUI: begin
+                        STATE = END;
+                        MEMTOREG_select = 4'd6;
+                        REGDST_select = 3'd0;
+                        REG_write = 1;
+                    end
+                    J: begin
+                        STATE = END;
+                        PCSOURCE_select = 3'd3;
+                        PC_write = 1;
+                    end 
+                    JAL: begin
+                        ALUSRCA_select = 2'd0;
+                        ALU_control = 3'd0;
+                        ALUOUT_write = 1;
+                    end
+                    default: begin// OPCODE Inexistente
+                        STATE = OPCODEEX1;
+                    end
+                endcase 
+            end 
             SW: begin
                 STATE = SW2;
                 IORD_select = 2'd2;
