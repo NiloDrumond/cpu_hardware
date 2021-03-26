@@ -98,7 +98,6 @@ parameter SH3 = 7'd49;
 parameter SH4 = 7'd50;
 parameter SB3 = 7'd51;
 parameter SB4 = 7'd52;
-<<<<<<< HEAD
 parameter SW5 = 7'd53;
 parameter SB5 = 7'd54;
 parameter SH5 = 7'd55;
@@ -110,11 +109,9 @@ parameter BNE2 = 7'd60;
 parameter BGT = 7'd61;
 parameter BLE = 7'd62;
 parameter BLM5 = 7'd63;
-parameter JAL2 = 7'D64
-=======
-parameter DIV2 = 7'd53;
-parameter DIV3 = 7'd54;
->>>>>>> 06b36bcd9b391b95c630b2f55be77503134159f4
+parameter JAL2 = 7'D64;
+parameter DIV2 = 7'd65;
+parameter DIV3 = 7'd66;
 
 //instr R
 parameter R_FORMAT = 6'd0;
@@ -296,7 +293,11 @@ always @(posedge clk) begin
                                 MEMTOREG_select = 4'd1;
                                 REG_write = 1;
                             end
-                            RTE: STATE = RTE; // todo
+                            RTE: begin
+                                STATE = END;
+                                PCSOURCE_select = 3'd4;
+                                PC_write = 1;
+                            end
                             XCGH: begin
                                 STATE = XCGH2;
                                 MEMTOREG_select = 4'd09;
@@ -387,47 +388,19 @@ always @(posedge clk) begin
                         ALUOUT_write = 1;
                         STATE = SW2;
                     end
-<<<<<<< HEAD
                     SH: begin
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd2;
                         ALU_control = 3'd1;
                         ALUOUT_write = 1;
                         STATE = SH2;
-=======
-                    MFHI: begin
-                        STATE = END;
-                        MEMTOREG_select = 4'd02;
-                        REGDST_select = 3'd1;
-                    end
-                    MFLO: begin
-                        STATE = END;
-                        MEMTOREG_select = 4'd03;
-                        REGDST_select = 3'd1;
-                    end
-                    BREAK: begin
-                        STATE = END;
-                        ALUSRCA_select = 2'd0;
-                        ALUSRCB_select = 2'd1;
-                        ALU_control = 3'd2;
-                        PCSOURCE_select = 3'd1;
-                        PC_write = 1;
->>>>>>> 06b36bcd9b391b95c630b2f55be77503134159f4
                     end
                     SB: begin
                         ALUSRCA_select = 2'd1;
-<<<<<<< HEAD
                         ALUSRCB_select = 2'd2;
                         ALU_control = 3'd1;
                         ALUOUT_write = 1;
                         STATE = SB2;
-=======
-                        ALUSRCB_select = 2'd0;
-                        ALU_control = 3'd7;
-                        REGDST_select = 3'd1;
-                        MEMTOREG_select = 4'd1;
-                        REG_write = 1;
->>>>>>> 06b36bcd9b391b95c630b2f55be77503134159f4
                     end
                     LW: begin
                         ALUSRCA_select = 2'd1;
