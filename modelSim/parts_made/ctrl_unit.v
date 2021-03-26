@@ -340,14 +340,14 @@ always @(posedge clk) begin
                         endcase
                     end
                     ADDI: begin
-                        STATE = ADDI_ADDIU;
+                        STATE = ALUOUT_TO_RT;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd2;
                         ALU_control = 3'd1;
                         ALUOUT_write = 1;
                     end
                     ADDIU: begin
-                        STATE = ADDI_ADDIU;
+                        STATE = ALUOUT_TO_RT;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd2;
                         ALU_control = 3'd3;
@@ -654,14 +654,6 @@ always @(posedge clk) begin
                 end
                 STATE = END;                
             end
-            ADDI_ADDIU:begin
-                if (overflow == 1 && OPCODE == ADDI) begin // overflow apenas no addi
-                    STATE = OVERFLOWEX1;
-                end
-                else begin
-                    STATE = ALUOUT_TO_RT;
-                end
-            end
             ALUOUT_TO_RD:begin
                 STATE = END;
                 ALUOUT_write = 0;
@@ -670,11 +662,16 @@ always @(posedge clk) begin
                 REG_write = 1;
             end
             ALUOUT_TO_RT:begin
-                STATE = END;
-                ALUOUT_write = 0;
-                REGDST_select = 3'd0;
-                MEMTOREG_select = 4'd0;
-                REG_write = 1;
+                if (overflow == 1 && OPCODE == ADDI) begin // overflow apenas no addi
+                    STATE = OVERFLOWEX1;
+                end 
+                else begin
+                    STATE = END;
+                    ALUOUT_write = 0;
+                    REGDST_select = 3'd0;
+                    MEMTOREG_select = 4'd0;
+                    REG_write = 1;  
+                end 
             end
             END: begin
                 STATE = FETCH1;
