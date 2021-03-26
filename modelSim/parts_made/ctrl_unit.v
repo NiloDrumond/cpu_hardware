@@ -603,7 +603,7 @@ always @(posedge clk) begin
             JAL_END: begin
                 PCSOURCE_select = 3'd3;
                 PC_write = 1;
-                REG_write = 0
+                REG_write = 0;
                 STATE = END;
             end
             BEQ2: begin
