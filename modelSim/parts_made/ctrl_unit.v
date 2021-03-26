@@ -98,6 +98,18 @@ parameter SH3 = 7'd49;
 parameter SH4 = 7'd50;
 parameter SB3 = 7'd51;
 parameter SB4 = 7'd52;
+parameter SW5 = 7'd53;
+parameter SB5 = 7'd54;
+parameter SH5 = 7'd55;
+parameter LW5 = 7'd56;
+parameter LB5 = 7'd57;
+parameter LH5 = 7'd58;
+parameter BEQ2 = 7'd59;
+parameter BNE2 = 7'd60;
+parameter BGT = 7'd61;
+parameter BLE = 7'd62;
+parameter BLM5 = 7'd63;
+parameter JAL2 = 7'D64
 
 //instr R
 parameter R_FORMAT = 6'd0;
@@ -117,7 +129,7 @@ parameter SLL = 6'h0;
 parameter SRL = 6'h2;
 parameter SRA = 6'h3;
 parameter SLLV = 6'h4;
-parameter SRAV = 6'h7   ;
+parameter SRAV = 6'h7;
 
 //instr I
 parameter ADDI = 6'h8;
@@ -326,35 +338,87 @@ always @(posedge clk) begin
                         ALUOUT_write = 1;
                     end
                     ADDIU: begin
-                    STATE = ADDI_ADDIU;
+                        STATE = ADDI_ADDIU;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd2;
                         ALU_control = 3'd3;
                         ALUOUT_write = 1;
                     end
-                    BEQ, BNE, BLE, BGT: begin
+                    BEQ: begin
                        ALUSRCA_select = 1; 
                        ALUSRCB_select = 1; 
                        ALU_control = 3'b111;
+                       STATE = BEQ2;
+                    end 
+                    BNE: begin
+                       ALUSRCA_select = 1; 
+                       ALUSRCB_select = 1; 
+                       ALU_control = 3'b111;
+                       STATE = BNE2;
+                    end 
+                   BLE: begin
+                       ALUSRCA_select = 1; 
+                       ALUSRCB_select = 1; 
+                       ALU_control = 3'b111;
+                       STATE = BLE2;
+                    end 
+                    BGT: begin
+                       ALUSRCA_select = 1; 
+                       ALUSRCB_select = 1; 
+                       ALU_control = 3'b111;
+                       STATE = BGT2;
                     end 
                     BLM: begin
                         ALUSRCA_select = 1; 
                         ALUSRCB_select = 1; 
                         ALU_control = 3'b000;
                         IORD_select = 3'd1;
+                        STATE = BLM2;
                     end
-                    SW, SH, SB: begin
+                    SW: begin
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd2;
                         ALU_control = 3'd1;
                         ALUOUT_write = 1;
+                        STATE = SW2;
                     end
-                    LW, LH, LB: begin
+                    SH: begin
+                        ALUSRCA_select = 2'd1;
+                        ALUSRCB_select = 2'd2;
+                        ALU_control = 3'd1;
+                        ALUOUT_write = 1;
+                        STATE = SH2;
+                    end
+                    SB: begin
+                        ALUSRCA_select = 2'd1;
+                        ALUSRCB_select = 2'd2;
+                        ALU_control = 3'd1;
+                        ALUOUT_write = 1;
+                        STATE = SB2;
+                    end
+                    LW: begin
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd2;
                         ALU_control = 3'd1;
                         IORD_select = 1;
                         MEM_write = 0;
+                        STATE = LW2;
+                    end  
+                    LH: begin
+                        ALUSRCA_select = 2'd1;
+                        ALUSRCB_select = 2'd2;
+                        ALU_control = 3'd1;
+                        IORD_select = 1;
+                        MEM_write = 0;
+                        STATE = LH2;
+                    end  
+                    LB: begin
+                        ALUSRCA_select = 2'd1;
+                        ALUSRCB_select = 2'd2;
+                        ALU_control = 3'd1;
+                        IORD_select = 1;
+                        MEM_write = 0;
+                        STATE = LB2;
                     end  
                     SLTI: begin
                         STATE = END;
@@ -380,93 +444,94 @@ always @(posedge clk) begin
                         ALUSRCA_select = 2'd0;
                         ALU_control = 3'd0;
                         ALUOUT_write = 1;
+                        STATE = JAL2;
                     end
                     default: begin// OPCODE Inexistente
                         STATE = OPCODEEX1;
                     end
                 endcase 
             end 
-            SW: begin
-                STATE = SW2;
-                IORD_select = 2'd2;
-                MEM_write = 0;
-            end
             SW2: begin
                 STATE = SW3;
+                IORD_select = 2'd2;
+                MEM_write = 0;
             end
             SW3: begin
                 STATE = SW4;
             end
             SW4: begin
+                STATE = SW5;
+            end
+            SW5: begin
                 STATE = END;
                 SS_control = 2'd1;
                 MEM_write = 1;
             end
-            SH: begin
-                STATE = SH2;
-                IORD_select = 2'd2;
-                MEM_write = 0;
-            end
             SH2: begin
                 STATE = SH3;
+                IORD_select = 2'd2;
+                MEM_write = 0;
             end
             SH3: begin
                 STATE = SH4;
             end
             SH4: begin
+                STATE = SH5;
+            end
+            SH5: begin
                 STATE = END;
                 SS_control = 2'd2;
                 MEM_write = 1;
             end
             SB: begin
-                STATE = SB2;
+                STATE = SB3;
                 IORD_select = 2'd2;
                 MEM_write = 0;
-            end
-            SB2: begin
-                STATE = SB3;
             end
             SB3: begin
                 STATE = SB4;
             end
             SB4: begin
+                STATE = SB5;
+            end
+            SB5: begin
                 STATE = END;
                 SS_control = 2'd3;
                 MEM_write = 1;
-            end
-            LW: begin
-                STATE = LW2;
             end
             LW2: begin
                 STATE = LW3;
             end
             LW3: begin
+                STATE = LW4;
+            end
+            LW4: begin
                 STATE = END;
                 LS_control = 2'd1;
                 REG_write = 1;
                 MEMTOREG_select = 1;
                 REGDST_select = 0;
             end
-            LH: begin
-                STATE = LH2;
-            end
             LH2: begin
                 STATE = LH3;
             end
             LH3: begin
+                STATE = LH4;
+            end
+            LH4: begin
                 STATE = END;
                 LS_control = 2'd2;
                 REG_write = 1;
                 MEMTOREG_select = 1;
                 REGDST_select = 0;
             end
-            LB: begin
-                STATE = LB2;
-            end
             LB2: begin
                 STATE = LB3;
             end
             LB3: begin
+                STATE = LB4;
+            end
+            LB4: begin
                 STATE = END;
                 LS_control = 2'd3;
                 REG_write = 1;
@@ -528,52 +593,52 @@ always @(posedge clk) begin
                 REGDST_select = 3'd1; 
                 STATE = END;
             end
-            JAL: begin
+            JAL2: begin
                 PCSOURCE_select = 3'd3;
                 PCWRITE = 1;
                 STATE = JAL_END;
             end
-            BEQ: begin
+            BEQ2: begin
                 if(ET == 1) begin
                     PCSOURCE_select = 3'd2;
                     PCWRITE = 1;
                 end
                 STATE = END;
             end
-            BNE: begin
+            BNE2: begin
                 if(ET == 0) begin
                     PCSOURCE_select = 3'd2;
                     PCWRITE = 1;
                 end
                 STATE = END;
             end
-            BLE: begin
+            BLE2: begin
                 if(GT == 0) begin
                     PCSOURCE_select = 3'd2;
                     PCWRITE = 1;
                 end
                 STATE = END;
             end
-            BGT: begin
+            BGT2: begin
                 if(GT == 1) begin
                     PCSOURCE_select = 3'd2;
                     PCWRITE = 1;
                 end
                 STATE = END;
             end
-            BLM: begin
-                STATE = BLM2;
-            end
             BLM2: begin
                 STATE = BLM3;
             end
             BLM3: begin
-                ALUSRCA_select = 2'd2;
-                ALUSRCB_select = 2'd0;
-                ALU_control = 3'b111;
                 STATE = BLM4;
             end
             BLM4: begin
+                ALUSRCA_select = 2'd2;
+                ALUSRCB_select = 2'd0;
+                ALU_control = 3'b111;
+                STATE = BLM5;
+            end
+            BLM5: begin
                 if(LT == 1) begin
                     PCSOURCE_select = 3'd2;
                     PC_write = 1; 
