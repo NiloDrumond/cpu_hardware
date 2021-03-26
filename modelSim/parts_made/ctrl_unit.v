@@ -188,8 +188,7 @@ always @(posedge clk) begin
         SHIFTSRCA_select = 0;
         SHIFTSRCB_select = 0;
         IORD_select = 3'd0;      
-    end
-    else begin
+    end else begin
         case(STATE)
             FETCH1:begin
                 MEMTOREG_select = 4'd0;
@@ -645,7 +644,7 @@ always @(posedge clk) begin
                 ALUSRCA_select = 2'd2;
                 ALUSRCB_select = 2'd0;
                 ALU_control = 3'b111;
-                STATE = BLM5;
+                STATE = BLM5; 
             end
             BLM5: begin
                 if(LT == 1) begin
@@ -655,20 +654,20 @@ always @(posedge clk) begin
                 STATE = END;                
             end
             ALUOUT_TO_RD:begin
-                if (overflow == 1 && (OPCODE == ADD || OPCODE == SUB)) begin // overflow apenas no addi
+                if (overflow == 1 && (FUNCT == ADD || FUNCT == SUB)) begin // overflow apenas no addi
                     STATE = OVERFLOWEX1;
-                end 
-                STATE = END;
-                ALUOUT_write = 0;
-                REGDST_select = 3'd1;
-                MEMTOREG_select = 4'd0;
-                REG_write = 1;
+                end else begin
+                    STATE = END;
+                    ALUOUT_write = 0;
+                    REGDST_select = 3'd1;
+                    MEMTOREG_select = 4'd0;
+                    REG_write = 1; 
+                end      
             end
             ALUOUT_TO_RT:begin
                 if (overflow == 1 && OPCODE == ADDI) begin // overflow apenas no addi
                     STATE = OVERFLOWEX1;
-                end 
-                else begin
+                end else begin
                     STATE = END;
                     ALUOUT_write = 0;
                     REGDST_select = 3'd0;
