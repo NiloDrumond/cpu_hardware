@@ -282,7 +282,7 @@ always @(posedge clk) begin
                             BREAK: begin
                                 STATE = END;
                                 ALUSRCA_select = 2'd0;
-                                ALUSCRB_select = 2'd1;
+                                ALUSRCB_select = 2'd1;
                                 ALU_control = 3'd2;
                                 PCSOURCE_select = 3'd1;
                                 PC_write = 1;
@@ -290,7 +290,7 @@ always @(posedge clk) begin
                             SLT: begin
                                 STATE = END;
                                 ALUSRCA_select = 2'd1;
-                                ALUSCRB_select = 2'd0;
+                                ALUSRCB_select = 2'd0;
                                 ALU_control = 3'd7;
                                 REGDST_select = 3'd1;
                                 MEMTOREG_select = 4'd1;
