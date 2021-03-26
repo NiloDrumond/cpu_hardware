@@ -655,6 +655,9 @@ always @(posedge clk) begin
                 STATE = END;                
             end
             ALUOUT_TO_RD:begin
+                if (overflow == 1 && (OPCODE == ADD || OPCODE == SUB)) begin // overflow apenas no addi
+                    STATE = OVERFLOWEX1;
+                end 
                 STATE = END;
                 ALUOUT_write = 0;
                 REGDST_select = 3'd1;
