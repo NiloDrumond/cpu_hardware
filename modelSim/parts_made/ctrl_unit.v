@@ -291,8 +291,8 @@ always @(posedge clk) begin
                                 ALUSRCA_select = 2'd1;
                                 ALUSRCB_select = 2'd0;
                                 ALU_control = 3'd7;
-                                REGDST_select = 3'd4;
-                                MEMTOREG_select = 4'd1;
+                                REGDST_select = 3'd1;
+                                MEMTOREG_select = 4'd4;
                                 REG_write = 1;
                             end
                             RTE: begin
