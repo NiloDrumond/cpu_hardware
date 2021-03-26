@@ -101,13 +101,13 @@ parameter SB4 = 7'd52;
 parameter SW5 = 7'd53;
 parameter SB5 = 7'd54;
 parameter SH5 = 7'd55;
-parameter LW5 = 7'd56;
-parameter LB5 = 7'd57;
-parameter LH5 = 7'd58;
+parameter LW4 = 7'd56;
+parameter LB4 = 7'd57;
+parameter LH4 = 7'd58;
 parameter BEQ2 = 7'd59;
 parameter BNE2 = 7'd60;
-parameter BGT = 7'd61;
-parameter BLE = 7'd62;
+parameter BGT2 = 7'd61;
+parameter BLE2 = 7'd62;
 parameter BLM5 = 7'd63;
 parameter JAL2 = 7'D64;
 parameter DIV2 = 7'd65;
@@ -279,7 +279,7 @@ always @(posedge clk) begin
                             BREAK: begin
                                 STATE = END;
                                 ALUSRCA_select = 2'd0;
-                                ALUSCRB_select = 2'd1;
+                                ALUSRCB_select = 2'd1;
                                 ALU_control = 3'd2;
                                 PCSOURCE_select = 3'd1;
                                 PC_write = 1;
@@ -287,7 +287,7 @@ always @(posedge clk) begin
                             SLT: begin
                                 STATE = END;
                                 ALUSRCA_select = 2'd1;
-                                ALUSCRB_select = 2'd0;
+                                ALUSRCB_select = 2'd0;
                                 ALU_control = 3'd7;
                                 REGDST_select = 3'd1;
                                 MEMTOREG_select = 4'd1;
@@ -328,7 +328,7 @@ always @(posedge clk) begin
                                 SHIFT_control = 3'd1;
                                 STATE = SLLV2;
                             end
-                            SRAV begin
+                            SRAV: begin
                                 SHIFTSRCA_select = 0;
                                 SHIFTSRCB_select = 0;
                                 SHIFT_control = 3'd1;
