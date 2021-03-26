@@ -27,7 +27,7 @@ module cpu(
 
     wire multStop;
     wire divStop;
-    wire divZero; // botar no ctrl_unit ?
+    wire divZero;
     wire MULT_control;
     wire DIV_control;
 
