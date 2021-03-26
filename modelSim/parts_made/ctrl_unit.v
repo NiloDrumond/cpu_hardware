@@ -143,11 +143,11 @@ parameter BGT = 6'h7;
 parameter BLM = 6'h1;
 parameter LB = 6'h20;
 parameter LH = 6'h21;
-parameter LW = 6'hF;
+parameter LW = 6'h23;
 parameter SB = 6'h28;
 parameter SH = 6'h29;
 parameter SW = 6'h2B;
-parameter LUI = 6'h23;
+parameter LUI = 6'hF;
 parameter SLTI = 6'hA;
 
 // instr J
