@@ -291,7 +291,7 @@ always @(posedge clk) begin
                                 ALUSRCA_select = 2'd1;
                                 ALUSRCB_select = 2'd0;
                                 ALU_control = 3'd7;
-                                REGDST_select = 3'd1;
+                                REGDST_select = 3'd4;
                                 MEMTOREG_select = 4'd1;
                                 REG_write = 1;
                             end
@@ -595,9 +595,16 @@ always @(posedge clk) begin
                 STATE = END;
             end
             JAL2: begin
+                MEMTOREG_select = 4'd0;
+                REGDST_select = 3'd3;
+                REG_write = 1;
+                STATE = JAL_END;
+            end
+            JAL_END: begin
                 PCSOURCE_select = 3'd3;
                 PC_write = 1;
-                STATE = JAL_END;
+                REG_write = 0
+                STATE = END;
             end
             BEQ2: begin
                 if(ET == 1) begin
