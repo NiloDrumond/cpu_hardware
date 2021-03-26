@@ -180,7 +180,7 @@ always @(posedge clk) begin
         SS_control = 2'd0;
         LS_control = 2'd0;
         REGDST_select = 3'd2;
-        MEMTOREG_select = 4'd9;
+        MEMTOREG_select = 4'd8;
         PCSOURCE_select = 3'd0;
         ALUSRCA_select = 2'd0;
         ALUSRCB_select = 2'd0;
