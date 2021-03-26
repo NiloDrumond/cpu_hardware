@@ -349,7 +349,7 @@ always @(posedge clk) begin
                         STATE = ALUOUT_TO_RT;
                         ALUSRCA_select = 2'd1;
                         ALUSRCB_select = 2'd2;
-                        ALU_control = 3'd3;
+                        ALU_control = 3'd1;
                         ALUOUT_write = 1;
                     end
                     BEQ: begin
