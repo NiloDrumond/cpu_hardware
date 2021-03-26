@@ -381,7 +381,7 @@ always @(posedge clk) begin
                     SLT: begin
                         STATE = END;
                         ALUSRCA_select = 2'd1;
-                        ALUSRCB_select = 2'd0;
+                        ALUSCRB_select = 2'd0;
                         ALU_control = 3'd7;
                         REGDST_select = 3'd1;
                         MEMTOREG_select = 4'd1;
@@ -390,7 +390,7 @@ always @(posedge clk) begin
                     SLTI: begin
                         STATE = END;
                         ALUSRCA_select = 2'd1;
-                        ALUSRCB_select = 2'd2;
+                        ALUSCRB_select = 2'd2;
                         ALU_control = 3'd7;
                         REGDST_select = 3'd0;
                         MEMTOREG_select = 4'd4;
@@ -513,7 +513,7 @@ always @(posedge clk) begin
 
             XCGH2: begin
                 STATE = END;
-                MEMTOREG_select = 4'd10;
+                MEMTOREG_select = 4'10;
                 REGDST_select = 3'd4;
             end
             MULT2: begin
@@ -528,7 +528,7 @@ always @(posedge clk) begin
             end
             DIV2: begin
                 if (divZero) begin
-					STATE = DIVYBZEROEX1;
+					state = DIVYBZEROEX1;
                 end else begin
                     if(divStop == 1) begin
                         STATE = DIV3;
@@ -568,34 +568,34 @@ always @(posedge clk) begin
             end
             JAL: begin
                 PCSOURCE_select = 3'd3;
-                PC_write = 1;
+                PCWRITE = 1;
                 STATE = JAL_END;
             end
             BEQ: begin
                 if(ET == 1) begin
                     PCSOURCE_select = 3'd2;
-                    PC_write = 1;
+                    PCWRITE = 1;
                 end
                 STATE = END;
             end
             BNE: begin
                 if(ET == 0) begin
                     PCSOURCE_select = 3'd2;
-                    PC_write = 1;
+                    PCWRITE = 1;
                 end
                 STATE = END;
             end
             BLE: begin
                 if(GT == 0) begin
                     PCSOURCE_select = 3'd2;
-                    PC_write = 1;
+                    PCWRITE = 1;
                 end
                 STATE = END;
             end
             BGT: begin
                 if(GT == 1) begin
                     PCSOURCE_select = 3'd2;
-                    PC_write = 1;
+                    PCWRITE = 1;
                 end
                 STATE = END;
             end
@@ -713,7 +713,7 @@ always @(posedge clk) begin
                 PC_write = 1;
                 PCSOURCE_select = 3'd0;
                 PCSOURCE_select = 3'd0;
-                LS_control = 2'd3;
+                LS_control = 2'd3
             end
             
         endcase
