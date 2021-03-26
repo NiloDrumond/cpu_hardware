@@ -168,7 +168,7 @@ always @(posedge clk) begin
         MEM_write = 0;
         PC_write = 0;
         IR_write = 0;
-        REG_write = 0;
+        REG_write = 1;
         AB_write = 0;
         HILO_write = 0;
         ALUOUT_write = 0;
@@ -179,24 +179,27 @@ always @(posedge clk) begin
         DIV_control = 0;
         SS_control = 2'd0;
         LS_control = 2'd0;
-        REGDST_select = 3'd0;
-        MEMTOREG_select = 4'd0;
+        REGDST_select = 3'd2;
+        MEMTOREG_select = 4'd9;
         PCSOURCE_select = 3'd0;
         ALUSRCA_select = 2'd0;
         ALUSRCB_select = 2'd0;
         HILO_select = 0;
         SHIFTSRCA_select = 0;
         SHIFTSRCB_select = 0;
-        IORD_select = 3'd0;
+        IORD_select = 3'd0;      
     end
     else begin
         case(STATE)
             FETCH1:begin
+                MEMTOREG_select = 4'd0;
+                REG_write = 0;
+                REGDST_select = 3'd0;
+
                 STATE = FETCH2;
                 IORD_select = 3'd0;
                 ALUSRCA_select = 2'd0;
                 ALUSRCB_select = 2'd1;
-                REG_write = 0;
                 ALU_control = 3'd1;
                 MEM_write = 0;
             end
