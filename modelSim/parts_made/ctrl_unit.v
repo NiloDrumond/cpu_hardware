@@ -218,7 +218,7 @@ always @(posedge clk) begin
                 STATE = DECODE2;
                 IR_write = 0;
                 ALUSRCA_select = 2'd0;
-                ALUSRCA_select = 2'd3;
+                ALUSRCB_select = 2'd3;
                 ALU_control = 3'd1;
                 ALUOUT_write = 1;
             end
@@ -555,6 +555,7 @@ always @(posedge clk) begin
                 STATE = END;
             end
             DIV2: begin
+                DIV_control = 0;
                 if (divZero) begin
 					STATE = DIVYBZEROEX1;
                 end else begin

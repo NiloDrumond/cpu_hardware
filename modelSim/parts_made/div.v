@@ -48,7 +48,7 @@ always @ (posedge clk) begin
 		divStop = 1'b0;
 		if(divisor == 0) begin // Checa divByZero
 			divZero = 1'b1;
-			counter = 1;
+			counter = -1;
 		end else begin
 			aux = 1'b1;
 			divZero = 1'b0;

@@ -341,7 +341,7 @@ module cpu(
         overflow,
         NG,
         zero,
-        ET,
+        EQ,
         GT,
         LT,
         multStop,
