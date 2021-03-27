@@ -7,7 +7,7 @@ module cpu(
     wire overflow;
     wire NG;
     wire zero;
-    wire EQ;
+    wire ET;
     wire GT;
     wire LT;
 
@@ -314,7 +314,7 @@ module cpu(
         overflow,
         NG,
         zero,
-        EQ,
+        ET,
         GT,
         LT
     );
