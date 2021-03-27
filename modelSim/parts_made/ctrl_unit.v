@@ -270,13 +270,15 @@ always @(posedge clk) begin
                             end
                             MFHI: begin
                                 STATE = END;
-                                MEMTOREG_select = 4'd02;
+                                MEMTOREG_select = 4'd2;
                                 REGDST_select = 3'd1;
+                                REG_write = 1;
                             end
                             MFLO: begin
                                 STATE = END;
                                 MEMTOREG_select = 4'd03;
                                 REGDST_select = 3'd1;
+                                REG_write = 1;
                             end
                             BREAK: begin
                                 STATE = END;
@@ -545,6 +547,7 @@ always @(posedge clk) begin
                 REGDST_select = 3'd4;
             end
             MULT2: begin
+                MULT_control = 0;
                 if(multStop == 1) begin
                     STATE = MULT3;
                 end
