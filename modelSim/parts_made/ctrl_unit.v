@@ -547,6 +547,7 @@ always @(posedge clk) begin
                 REGDST_select = 3'd4;
             end
             MULT2: begin
+                MULT_control = 0;
                 if(multStop == 1) begin
                     STATE = MULT3;
                 end
