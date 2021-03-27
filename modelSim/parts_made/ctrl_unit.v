@@ -555,6 +555,7 @@ always @(posedge clk) begin
                 STATE = END;
             end
             DIV2: begin
+                DIV_control = 0;
                 if (divZero) begin
 					STATE = DIVYBZEROEX1;
                 end else begin
