@@ -70,7 +70,9 @@ always @ (posedge clk) begin
 		end
 		quociente = 32'b0;
 		resto = 32'b0;				
-	end
+    end else begin
+        divZero = 1'b0;
+    end
 	
 	resto = (resto << 1);
 	
