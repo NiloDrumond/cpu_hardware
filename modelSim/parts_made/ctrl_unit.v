@@ -484,7 +484,7 @@ always @(posedge clk) begin
                 SS_control = 2'd2;
                 MEM_write = 1;
             end
-            SB: begin
+            SB2: begin
                 STATE = SB3;
                 IORD_select = 2'd2;
                 MEM_write = 0;
