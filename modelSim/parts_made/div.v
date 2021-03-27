@@ -48,7 +48,7 @@ always @ (posedge clk) begin
 		divStop = 1'b0;
 		if(divisor == 0) begin // Checa divByZero
 			divZero = 1'b1;
-			counter = -1;
+			counter = -10;
 		end else begin
 			aux = 1'b1;
 			divZero = 1'b0;
@@ -98,12 +98,12 @@ always @ (posedge clk) begin
 			divStop = 1'b1;
 			aux = 1'b0;
 		end
-		counter = -1;
+		counter = -10;
 	end
 	
 
   // Mantém os campos limpos caso não esteja executando o algoritmo
-	if(counter == -1) begin
+	if(counter == -10) begin
 		quociente = 32'b0;
 		resto = 32'b0;
 		dividendo = 32'b0;
