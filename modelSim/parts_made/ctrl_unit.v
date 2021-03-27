@@ -658,7 +658,7 @@ always @(posedge clk) begin
                 STATE = END;                
             end
             ALUOUT_TO_RD:begin
-                if (overflow == 1 && (FUNCT == ADD || FUNCT == SUB)) begin // overflow apenas no addi
+                if (overflow == 1 && (FUNCT == ADD || FUNCT == SUB)) begin // overflow apenas no add ou sub
                     STATE = OVERFLOWEX1;
                 end else begin
                     STATE = END;
