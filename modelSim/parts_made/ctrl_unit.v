@@ -368,8 +368,8 @@ always @(posedge clk) begin
                     BGT: begin
                         ALUSRCA_select = 2'd1; 
                         ALUSRCB_select = 2'd0; 
-                         ALU_control = 3'b111;
-                         STATE = BGT2;
+                        ALU_control = 3'b111;
+                        STATE = BGT2;
                     end 
                     BLM: begin
                         ALUSRCA_select = 1; 
